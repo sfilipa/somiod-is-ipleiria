@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Applications]
+(
+	[Id] INT IDENTITY(1, 1) NOT NULL,
+	[Name] NVARCHAR (50) NOT NULL,
+	[Creation_dt] SMALLDATETIME NOT NULL,
+	PRIMARY KEY CLUSTERED ([Id] ASC)
+)
