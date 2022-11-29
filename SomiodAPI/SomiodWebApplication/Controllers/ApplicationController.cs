@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,6 +10,9 @@ namespace SomiodWebApplication.Controllers
 {
     public class ApplicationController : ApiController
     {
+        // Connection to DB
+        string connectionString = SomiodWebApplication.Properties.Settings.Default.connStr;
+
         // GET: api/Application
         [Route("api/somiod")]
         public IEnumerable<string> Get()
@@ -33,6 +37,7 @@ namespace SomiodWebApplication.Controllers
         [Route("api/somiod/{id:int}")]
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/Application/5
