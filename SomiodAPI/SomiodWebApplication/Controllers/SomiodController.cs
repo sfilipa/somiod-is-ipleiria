@@ -9,6 +9,8 @@ namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
+        string connectionString = Properties.Settings.Default.connStr;
+
         // GET: api/Somiod
         public IEnumerable<string> Get()
         {
