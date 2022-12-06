@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SomiodWebApplication.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -24,8 +26,28 @@ namespace SomiodWebApplication.Controllers
         }
 
         // POST: api/Somiod
-        public void Post([FromBody]string value)
+        [Route("api/somiod")]
+        public IHttpActionResult Post([FromBody] Application newApplication)
         {
+            string query = "INSERT INTO Applications VALUES (@name)";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@name", newApplication.Name);
+
+                int numRows = command.ExecuteNonQuery();
+
+                connection.Close();
+
+                if (numRows != 1)
+                {
+                    return InternalServerError();
+                }
+                return Ok();
+            }
         }
 
         // PUT: api/Somiod/5
