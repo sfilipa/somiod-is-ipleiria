@@ -45,35 +45,64 @@ namespace SomiodWebApplication.Controllers
 
         // POST: api/Somiod
         [Route("api/somiod")]
-        public IHttpActionResult Post([FromBody] Application newApplication)
+        public HttpResponseMessage Post([FromBody] Application newApplication)
         {
             if (newApplication.Res_type != "application")
             {
-                return BadRequest();
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
             Application obj;
 
             try
             {
-                obj = ApplicationHandler.SaveToDatabaseApplication(newApplication);
+                obj = ApplicationHandler.SaveToDatabase(newApplication);
             }
             catch (System.Exception)
             {
-                return BadRequest();
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
-            return Created("api/somiod", obj);
+            return Request.CreateResponse<Application>(HttpStatusCode.Created, obj);
         }
 
-        // PUT: api/Somiod/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Put(string name, [FromBody] Application newApplication)
         {
+            if (newApplication.Res_type != "application")
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            Application obj;
+
+            try
+            {
+                obj = ApplicationHandler.UpdateToDatabase(name,newApplication);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
         }
 
-        // DELETE: api/Somiod/5
-        public void Delete(int id)
+        // DELETE: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Delete(string name)
         {
+            try
+            {
+                ApplicationHandler.DeleteFromDatabase(name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }
