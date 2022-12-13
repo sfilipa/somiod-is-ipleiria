@@ -2,46 +2,69 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using SomiodWebApplication.Handlers;
+using System.Net.Http;
+using System.Net;
 
 namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
-        // GET: api/Somiod
-        public IEnumerable<string> Get()
+        [Route("api/somiod/applications")]
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Application> objs;
+
+            try
+            {
+                objs = ApplicationHandler.FindObjectsInDatabase();
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.OK, objs);
         }
 
-        // GET: api/Somiod/5
-        public string Get(int id)
+        // GET: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Get(string name)
         {
-            return "value";
+            Application obj;
+            try
+            {
+                obj = ApplicationHandler.FindObjectInDatabase(name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
         }
 
         // POST: api/Somiod
         [Route("api/somiod")]
-        public IHttpActionResult Post([FromBody] Application newApplication)
+        public HttpResponseMessage Post([FromBody] Application newApplication)
         {
             if (newApplication.Res_type != "application")
             {
-                return BadRequest();
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
             Application obj;
 
             try
             {
-                obj = ApplicationHandler.SaveToDatabaseApplication(newApplication);
+                obj = ApplicationHandler.SaveToDatabase(newApplication);
             }
             catch (System.Exception)
             {
-                return BadRequest();
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
-            return Created("api/products", obj);
+            return Request.CreateResponse<Application>(HttpStatusCode.Created, obj);
         }
-
 
         // POST: api/Somiod
         [Route("api/somiod/{application_name}")]
@@ -66,14 +89,43 @@ namespace SomiodWebApplication.Controllers
             return Created("api/somiod", obj);
         }
 
-        // PUT: api/Somiod/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Put(string name, [FromBody] Application newApplication)
         {
+            if (newApplication.Res_type != "application")
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            Application obj;
+
+            try
+            {
+                obj = ApplicationHandler.UpdateToDatabase(name,newApplication);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
         }
 
-        // DELETE: api/Somiod/5
-        public void Delete(int id)
+        // DELETE: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Delete(string name)
         {
+            try
+            {
+                ApplicationHandler.DeleteFromDatabase(name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }

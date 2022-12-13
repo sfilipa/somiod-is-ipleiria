@@ -67,7 +67,7 @@ namespace SomiodWebApplication.Handlers
                 command.Parameters.AddWithValue("@name", newModuleName);
                 command.Parameters.AddWithValue("@date", todaysDateAndTime);
 
-                Application applicationObj = SomiodHandler.FindObjectInDatabase(application_name);
+                Application applicationObj = ApplicationHandler.FindObjectInDatabase(application_name);
                 if(applicationObj == null) {
                     Console.WriteLine("ERROR: FINDING APPLICATION WITH NAME "+ application_name);
                 }
