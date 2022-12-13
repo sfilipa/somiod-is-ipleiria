@@ -2,21 +2,45 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using SomiodWebApplication.Handlers;
+using System.Net.Http;
+using System.Net;
 
 namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
-        // GET: api/Somiod
-        public IEnumerable<string> Get()
+        [Route("api/somiod/applications")]
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            List<Application> objs;
+
+            try
+            {
+                objs = ApplicationHandler.FindObjectsInDatabase();
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.OK, objs);
         }
 
-        // GET: api/Somiod/5
-        public string Get(int id)
+        // GET: api/Somiod/lighting
+        [Route("api/somiod/{name}")]
+        public HttpResponseMessage Get(string name)
         {
-            return "value";
+            Application obj;
+            try
+            {
+                obj = ApplicationHandler.FindObjectInDatabase(name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
         }
 
         // POST: api/Somiod
@@ -39,7 +63,7 @@ namespace SomiodWebApplication.Controllers
                 return BadRequest();
             }
 
-            return Created("api/products", obj);
+            return Created("api/somiod", obj);
         }
 
         // PUT: api/Somiod/5
