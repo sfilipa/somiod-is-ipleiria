@@ -24,6 +24,11 @@ namespace SomiodWebApplication.Controllers
         [Route("api/somiod")]
         public IHttpActionResult Post([FromBody] Application newApplication)
         {
+            if (newApplication.Res_type != "application")
+            {
+                return BadRequest();
+            }
+
             Application obj;
 
             try

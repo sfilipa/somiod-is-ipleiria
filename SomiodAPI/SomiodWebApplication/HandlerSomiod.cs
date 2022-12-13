@@ -8,10 +8,10 @@ namespace SomiodWebApplication
     {
         static string connectionString = Properties.Settings.Default.connStr;
 
-        public static Application SaveToDatabaseApplication(Application myApplcation)
+        public static Application SaveToDatabaseApplication(Application myApplication)
         {
             // Attributes to send to the DB
-            string newApplicationName = myApplcation.Name;
+            string newApplicationName = myApplication.Name;
             DateTime todaysDateAndTime = DateTime.Now;
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -40,7 +40,10 @@ namespace SomiodWebApplication
                     Console.WriteLine("Error inserting object into database: " + ex.Message);
                 }
             }
-            return FindObjectInDatabase(newApplicationName);
+
+            Application obj = FindObjectInDatabase(newApplicationName);
+            obj.Res_type = "application";
+            return obj;
         }
 
         public static Application FindObjectInDatabase(string name)
