@@ -10,7 +10,8 @@ namespace SomiodWebApplication.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public TypeSmallDateTimeSchemaImporterExtension Creation_dt { get; set; }
+        public string Res_type { get; set; }
+        public DateTime Creation_dt { get; set; }
         public int Parent { get; set; }
 
     }

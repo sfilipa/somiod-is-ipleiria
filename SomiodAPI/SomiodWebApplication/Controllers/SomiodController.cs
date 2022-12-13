@@ -42,6 +42,30 @@ namespace SomiodWebApplication.Controllers
             return Created("api/products", obj);
         }
 
+
+        // POST: api/Somiod
+        [Route("api/somiod/{application_name}")]
+        public IHttpActionResult Post(string application_name, [FromBody] Module newModule)
+        {
+            if (newModule.Res_type != "module")
+            {
+                return BadRequest();
+            }
+
+            Module obj;
+
+            try
+            {
+                obj = ModuleHandler.SaveToDatabaseModule(newModule, application_name);
+            }
+            catch (System.Exception)
+            {
+                return BadRequest();
+            }
+
+            return Created("api/somiod", obj);
+        }
+
         // PUT: api/Somiod/5
         public void Put(int id, [FromBody]string value)
         {
