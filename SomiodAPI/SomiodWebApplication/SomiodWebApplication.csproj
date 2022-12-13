@@ -95,7 +95,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="HandlerSomiod.cs" />
+    <Compile Include="Handlers\ApplicationHandler.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Data.cs" />
     <Compile Include="Models\Module.cs" />

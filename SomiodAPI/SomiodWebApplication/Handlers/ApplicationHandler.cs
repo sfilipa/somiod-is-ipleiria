@@ -2,9 +2,9 @@
 using System;
 using System.Data.SqlClient;
 
-namespace SomiodWebApplication
+namespace SomiodWebApplication.Handlers
 {
-    public class HandlerSomiod
+    public class ApplicationHandler
     {
         static string connectionString = Properties.Settings.Default.connStr;
 

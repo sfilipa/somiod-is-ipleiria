@@ -1,13 +1,12 @@
 ﻿using SomiodWebApplication.Models;
 using System.Collections.Generic;
 using System.Web.Http;
+using SomiodWebApplication.Handlers;
 
 namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
-        string connectionString = Properties.Settings.Default.connStr;
-
         // GET: api/Somiod
         public IEnumerable<string> Get()
         {
@@ -33,7 +32,7 @@ namespace SomiodWebApplication.Controllers
 
             try
             {
-                obj = HandlerSomiod.SaveToDatabaseApplication(newApplication);
+                obj = ApplicationHandler.SaveToDatabaseApplication(newApplication);
             }
             catch (System.Exception)
             {
