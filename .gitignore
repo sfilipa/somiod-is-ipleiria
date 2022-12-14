@@ -3,3 +3,5 @@
 ################################################################################
 
 /SomiodAPI/SomiodWebApplication/App_Data/DBSomiod_log.ldf
+*.mdf
+*.ldf

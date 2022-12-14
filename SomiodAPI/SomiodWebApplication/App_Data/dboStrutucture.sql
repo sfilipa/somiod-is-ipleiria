@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[Modules]
 	[Parent] INT NOT NULL,
 	PRIMARY KEY CLUSTERED ([Id] ASC),
 	FOREIGN KEY (Parent) REFERENCES Applications(Id),
-    CONSTRAINT [UC_Modules_Name] UNIQUE NONCLUSTERED ([Name] ASC),
+    --CONSTRAINT [UC_Modules_Name] UNIQUE NONCLUSTERED ([Name] ASC), 
 )
 
 CREATE TABLE [dbo].[Data]

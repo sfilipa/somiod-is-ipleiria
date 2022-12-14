@@ -4,12 +4,14 @@ using System.Web.Http;
 using SomiodWebApplication.Handlers;
 using System.Net.Http;
 using System.Net;
+using System.Xml.Linq;
 
 namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
         [Route("api/somiod/applications")]
+        [HttpGet]
         public HttpResponseMessage Get()
         {
             List<Application> objs;
@@ -28,6 +30,7 @@ namespace SomiodWebApplication.Controllers
 
         // GET: api/Somiod/lighting
         [Route("api/somiod/{name}")]
+        [HttpGet]
         public HttpResponseMessage Get(string name)
         {
             Application obj;
@@ -45,6 +48,7 @@ namespace SomiodWebApplication.Controllers
 
         // POST: api/Somiod
         [Route("api/somiod")]
+        [HttpPost]
         public HttpResponseMessage Post([FromBody] Application newApplication)
         {
             if (newApplication.Res_type != "application")
@@ -66,13 +70,14 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse<Application>(HttpStatusCode.Created, obj);
         }
 
-        // POST: api/Somiod
+        // POST: api/Somiod/lighing
         [Route("api/somiod/{application_name}")]
-        public IHttpActionResult Post(string application_name, [FromBody] Module newModule)
+        [HttpPost]
+        public HttpResponseMessage Post(string application_name, [FromBody] Module newModule)
         {
             if (newModule.Res_type != "module")
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'module' res_type");
             }
 
             Module obj;
@@ -81,16 +86,94 @@ namespace SomiodWebApplication.Controllers
             {
                 obj = ModuleHandler.SaveToDatabaseModule(newModule, application_name);
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return BadRequest();
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
             }
 
-            return Created("api/somiod", obj);
+            return Request.CreateResponse(HttpStatusCode.OK, obj);
         }
 
-        // PUT: api/Somiod/lighting
+        // GET: api/Somiod/lighting/modules
+        [Route("api/somiod/{application_name}/modules")]
+        [HttpGet]
+        public HttpResponseMessage GetAllModulesFromApplication(string application_name)
+        {
+            IEnumerable<Module> modules;
+            try
+            {
+                modules = ModuleHandler.FindAllInDatabase(application_name);
+            }
+            catch (System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, modules);
+        }
+
+        // GET: api/Somiod/lighting/module/light_bulb
+        [Route("api/somiod/{application_name}/modules/{module_name}")] //deixo assim pq penso que deveriamos tirar a constraint UNIQUE do name dos modules
+        [HttpGet]
+        public HttpResponseMessage GetSpecificModule(string application_name, string module_name)
+        {
+            Module module;
+            try
+            {
+                module = ModuleHandler.FindObjectInDatabase(application_name, module_name);
+            }
+            catch (System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, module);
+        }
+
+        //PUT: api/somiod/lighting/modules/light_bulb
+        [Route("api/somiod/{application_name}/modules/{module_name}")]
+        [HttpPut]
+        public HttpResponseMessage PutModule(string application_name, string module_name, [FromBody] Module updatedModule)
+        {
+            if(updatedModule.Res_type != "module")
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+            Module obj;
+            try
+            {
+                obj = ModuleHandler.UpdateToDatabase(application_name, module_name, updatedModule);
+
+            }catch(System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, obj);
+
+        }
+
+        //DELETE: api/somiod/lighting/modules/light_bulb
+        [Route("api/somiod/{application_name}/modules/{module_name}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteModule(string application_name, string module_name)
+        {
+            try
+            {
+                ModuleHandler.DeleteFromDatabase(application_name, module_name);
+                //depois se tiver FK é preciso tratar dessas exceções
+            }
+            catch (System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted "+module_name+ " with success!");
+        }
+
+        // DELETE: api/Somiod/lighting
         [Route("api/somiod/{name}")]
+        [HttpPut]
         public HttpResponseMessage Put(string name, [FromBody] Application newApplication)
         {
             if (newApplication.Res_type != "application")
@@ -114,6 +197,7 @@ namespace SomiodWebApplication.Controllers
 
         // DELETE: api/Somiod/lighting
         [Route("api/somiod/{name}")]
+        [HttpDelete]
         public HttpResponseMessage Delete(string name)
         {
             try
