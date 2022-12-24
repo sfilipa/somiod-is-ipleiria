@@ -5,6 +5,7 @@ using SomiodWebApplication.Handlers;
 using System.Net.Http;
 using System.Net;
 using System.Xml.Linq;
+using System.Web.UI.WebControls;
 
 namespace SomiodWebApplication.Controllers
 {
@@ -227,7 +228,31 @@ namespace SomiodWebApplication.Controllers
 
         //--- Data
 
-        //TODO
+        // POST: api/Somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}")]
+        [HttpPost]
+        public HttpResponseMessage PostData(string application_name, string module_name, [FromBody] Data newData)
+        {
+            if (newData.Res_type != "data")
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'data' res_type");
+            }
+
+            int rows = 0;
+
+            try
+            {
+                rows = DataHandler.SaveToDatabaseData(newData, application_name, module_name);
+            }
+            catch (System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.OK, "Inserted "+rows + " row");
+        }
+
+        
         //--- End of Data
 
         //--- Subscription
