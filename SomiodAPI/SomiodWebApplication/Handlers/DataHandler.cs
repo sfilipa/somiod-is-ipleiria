@@ -48,5 +48,27 @@ namespace SomiodWebApplication.Handlers
 
             return rowsInserted;
         }
+        public static void DeleteFromDatabase(int data_id)
+        {
+          
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                // Set up the command to delete object from the database
+                string insertCommand = "DELETE FROM Data WHERE Id = @Id";
+                SqlCommand command = new SqlCommand(insertCommand, connection);
+
+                command.Parameters.AddWithValue("@Id", data_id);
+
+                try
+                {
+                    connection.Open();
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+            }
+        }
     }
 }

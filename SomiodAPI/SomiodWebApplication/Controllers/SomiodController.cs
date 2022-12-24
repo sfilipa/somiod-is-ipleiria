@@ -252,7 +252,24 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, "Inserted "+rows + " row");
         }
 
-        
+        //DELETE: api/somiod/lighting/light_bulb
+        [Route("api/somiod/data/{data_id}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteData(int data_id)
+        {
+            try
+            {
+                DataHandler.DeleteFromDatabase(data_id);
+            }
+            catch (System.Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted data " + data_id + " with success!");
+        }
+
+
         //--- End of Data
 
         //--- Subscription
