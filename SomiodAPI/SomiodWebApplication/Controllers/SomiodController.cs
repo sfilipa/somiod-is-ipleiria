@@ -135,8 +135,8 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, modules);
         }
 
-        // GET: api/Somiod/lighting/module/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")]
+        // GET: api/Somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}")]
         [HttpGet]
         public HttpResponseMessage GetSpecificModuleFromApplication(string application_name, string module_name)
         {
@@ -181,8 +181,8 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, obj);
         }
 
-        //DELETE: api/somiod/lighting/modules/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")]
+        //DELETE: api/somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}")]
         [HttpDelete]
         public HttpResponseMessage DeleteModule(string application_name, string module_name)
         {
@@ -199,8 +199,8 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted "+module_name+ " with success!");
         }
 
-        //PUT: api/somiod/lighting/modules/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")]
+        //PUT: api/somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}")]
         [HttpPut]
         public HttpResponseMessage PutModule(string application_name, string module_name, [FromBody] Module updatedModule)
         {
@@ -231,6 +231,8 @@ namespace SomiodWebApplication.Controllers
         //--- End of Data
 
         //--- Subscription
+
+        // GET: api/Somiod/lighting/modules/
 
         //TODO
         //--- End of Subscription
