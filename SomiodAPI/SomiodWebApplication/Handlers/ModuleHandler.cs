@@ -1,5 +1,6 @@
 ﻿using SomiodWebApplication.Models;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 
@@ -37,8 +38,36 @@ namespace SomiodWebApplication.Handlers
                         Module obj = new Module();
                         obj.Id = Convert.ToInt32(reader["Id"]);
                         obj.Name = reader["Name"].ToString();
+                        obj.Res_type = "module";
                         obj.Creation_dt = Convert.ToDateTime(reader["Creation_dt"]);
                         obj.Parent = Convert.ToInt32(reader["Parent"]);
+
+                        List<Data> dataArray = new List<Data>();
+                        reader.Close();
+
+                        // Set up the command to search for the object by name
+                        string searchDataCommand = "SELECT * FROM Data WHERE Parent = @ParentData";
+                        SqlCommand commandData = new SqlCommand(searchDataCommand, connection);
+                        commandData.Parameters.AddWithValue("@ParentData", obj.Id);
+
+                        SqlDataReader readerData = commandData.ExecuteReader();
+
+                        // Check if the object was found
+                        while (readerData.Read())
+                        {
+
+                            Data objData = new Data();
+
+                            objData.Id = Convert.ToInt32(readerData["Id"]);
+                            objData.Content = readerData["Content"].ToString();
+                            objData.Res_type = "data";
+                            objData.Creation_dt = Convert.ToDateTime(readerData["Creation_dt"]);
+                            objData.Parent = Convert.ToInt32(readerData["Parent"]);
+
+                            dataArray.Add(objData);
+                        }
+                        readerData.Close();
+                        obj.Data = dataArray;
                         connection.Close();
                         return obj;
                     }
@@ -72,6 +101,7 @@ namespace SomiodWebApplication.Handlers
                 SqlCommand command = new SqlCommand(searchCommand, connection);
                 command.Parameters.AddWithValue("@Parent", applicationObj.Id);
 
+
                 try
                 {
                     connection.Open();
@@ -90,6 +120,36 @@ namespace SomiodWebApplication.Handlers
                         modules.Add(obj);
                     }
                     reader.Close();
+
+                    foreach (Module module in modules)
+                    {
+                        List<Data> dataArray = new List<Data>();
+                        // Set up the command to search for the object by name
+                        string searchDataCommand = "SELECT * FROM Data WHERE Parent = @ParentData";
+                        SqlCommand commandData = new SqlCommand(searchDataCommand, connection);
+                        commandData.Parameters.AddWithValue("@ParentData", module.Id);
+
+                        SqlDataReader readerData = commandData.ExecuteReader();
+
+                        // Check if the object was found
+                        while (readerData.Read())
+                        {
+
+                            Data objData = new Data();
+
+                            objData.Id = Convert.ToInt32(readerData["Id"]);
+                            objData.Content = readerData["Content"].ToString();
+                            objData.Res_type = "data";
+                            objData.Creation_dt = Convert.ToDateTime(readerData["Creation_dt"]);
+                            objData.Parent = Convert.ToInt32(readerData["Parent"]);
+
+                            dataArray.Add(objData);
+                        }
+                        module.Data = dataArray;
+
+                        readerData.Close();
+                    }
+
                     connection.Close();
                 }
                 catch (SqlException ex)
@@ -110,11 +170,11 @@ namespace SomiodWebApplication.Handlers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
-                if(FindObjectInDatabase(application_name, newModuleName) != null)
+                if (FindObjectInDatabase(application_name, newModuleName) != null)
                 {
-                    throw new Exception("There are already exists a module named "+ newModuleName + " in the application "+ application_name);
+                    throw new Exception("There are already exists a module named " + newModuleName + " in the application " + application_name);
                 }
-                
+
 
                 // Set up the command to insert the object into the database
                 string insertCommand = "INSERT INTO Modules VALUES (@name, @date, @parent)";
@@ -127,10 +187,11 @@ namespace SomiodWebApplication.Handlers
                 command.Parameters.AddWithValue("@date", todaysDateAndTime);
 
                 Application applicationObj = ApplicationHandler.FindObjectInDatabase(application_name);
-                if(applicationObj == null) {
+                if (applicationObj == null)
+                {
                     throw new Exception("Error finding application with name " + application_name);
                 }
-                
+
                 command.Parameters.AddWithValue("@parent", applicationObj.Id);
 
                 // Makes the connection to the Database
