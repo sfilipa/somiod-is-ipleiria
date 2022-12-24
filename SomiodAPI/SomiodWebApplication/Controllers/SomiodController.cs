@@ -10,9 +10,12 @@ namespace SomiodWebApplication.Controllers
 {
     public class SomiodController : ApiController
     {
-        [Route("api/somiod/applications")]
+        //---Application
+  
+        //GET: api/somiod
+        [Route("api/somiod")]
         [HttpGet]
-        public HttpResponseMessage Get()
+        public HttpResponseMessage GetAllApplications()
         {
             List<Application> objs;
 
@@ -29,14 +32,14 @@ namespace SomiodWebApplication.Controllers
         }
 
         // GET: api/Somiod/lighting
-        [Route("api/somiod/{name}")]
+        [Route("api/somiod/{application_name}")]
         [HttpGet]
-        public HttpResponseMessage Get(string name)
+        public HttpResponseMessage GetSpecificApplication(string application_name)
         {
             Application obj;
             try
             {
-                obj = ApplicationHandler.FindObjectInDatabase(name);
+                obj = ApplicationHandler.FindObjectInDatabase(application_name);
             }
             catch (System.Exception)
             {
@@ -49,7 +52,7 @@ namespace SomiodWebApplication.Controllers
         // POST: api/Somiod
         [Route("api/somiod")]
         [HttpPost]
-        public HttpResponseMessage Post([FromBody] Application newApplication)
+        public HttpResponseMessage PostApplication([FromBody] Application newApplication)
         {
             if (newApplication.Res_type != "application")
             {
@@ -70,29 +73,49 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse<Application>(HttpStatusCode.Created, obj);
         }
 
-        // POST: api/Somiod/lighing
+        // DELETE: api/Somiod/lighting
         [Route("api/somiod/{application_name}")]
-        [HttpPost]
-        public HttpResponseMessage Post(string application_name, [FromBody] Module newModule)
+        [HttpDelete]
+        public HttpResponseMessage DeleteApplication(string application_name)
         {
-            if (newModule.Res_type != "module")
+            try
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'module' res_type");
+                ApplicationHandler.DeleteFromDatabase(application_name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
-            Module obj;
+            return Request.CreateResponse(HttpStatusCode.NoContent);
+        }
+
+        // PUT: api/Somiod/lighting
+        [Route("api/somiod/{application_name}")]
+        [HttpPut]
+        public HttpResponseMessage PutApplication(string application_name, [FromBody] Application newApplication)
+        {
+            if (newApplication.Res_type != "application")
+            {
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+            }
+
+            Application obj;
 
             try
             {
-                obj = ModuleHandler.SaveToDatabaseModule(newModule, application_name);
+                obj = ApplicationHandler.UpdateToDatabase(application_name, newApplication);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, obj);
+            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
         }
+        //--- End of Application
+
+        //--- Modules
 
         // GET: api/Somiod/lighting/modules
         [Route("api/somiod/{application_name}/modules")]
@@ -113,9 +136,9 @@ namespace SomiodWebApplication.Controllers
         }
 
         // GET: api/Somiod/lighting/module/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")] 
+        [Route("api/somiod/{application_name}/modules/{module_name}")]
         [HttpGet]
-        public HttpResponseMessage GetSpecificModule(string application_name, string module_name)
+        public HttpResponseMessage GetSpecificModuleFromApplication(string application_name, string module_name)
         {
             Module module;
             try
@@ -134,27 +157,28 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, module);
         }
 
-        //PUT: api/somiod/lighting/modules/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")]
-        [HttpPut]
-        public HttpResponseMessage PutModule(string application_name, string module_name, [FromBody] Module updatedModule)
+        // POST: api/Somiod/lighting
+        [Route("api/somiod/{application_name}")]
+        [HttpPost]
+        public HttpResponseMessage PostModule(string application_name, [FromBody] Module newModule)
         {
-            if(updatedModule.Res_type != "module")
+            if (newModule.Res_type != "module")
             {
-                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'module' res_type");
             }
+
             Module obj;
+
             try
             {
-                obj = ModuleHandler.UpdateToDatabase(application_name, module_name, updatedModule);
-
-            }catch(System.Exception ex)
+                obj = ModuleHandler.SaveToDatabaseModule(newModule, application_name);
+            }
+            catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, obj);
-
         }
 
         //DELETE: api/somiod/lighting/modules/light_bulb
@@ -175,45 +199,41 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted "+module_name+ " with success!");
         }
 
-        // DELETE: api/Somiod/lighting
-        [Route("api/somiod/{name}")]
+        //PUT: api/somiod/lighting/modules/light_bulb
+        [Route("api/somiod/{application_name}/modules/{module_name}")]
         [HttpPut]
-        public HttpResponseMessage Put(string name, [FromBody] Application newApplication)
+        public HttpResponseMessage PutModule(string application_name, string module_name, [FromBody] Module updatedModule)
         {
-            if (newApplication.Res_type != "application")
+            if (updatedModule.Res_type != "module")
             {
                 return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
-
-            Application obj;
-
+            Module obj;
             try
             {
-                obj = ApplicationHandler.UpdateToDatabase(name,newApplication);
+                obj = ModuleHandler.UpdateToDatabase(application_name, module_name, updatedModule);
+
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
+            return Request.CreateResponse(HttpStatusCode.OK, obj);
+
         }
+        //--- End of Module
 
-        // DELETE: api/Somiod/lighting
-        [Route("api/somiod/{name}")]
-        [HttpDelete]
-        public HttpResponseMessage Delete(string name)
-        {
-            try
-            {
-                ApplicationHandler.DeleteFromDatabase(name);
-            }
-            catch (System.Exception)
-            {
-                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
-            }
 
-            return Request.CreateResponse(HttpStatusCode.NoContent);
-        }
+        //--- Data
+
+        //TODO
+        //--- End of Data
+
+        //--- Subscription
+
+        //TODO
+        //--- End of Subscription
+
     }
 }
