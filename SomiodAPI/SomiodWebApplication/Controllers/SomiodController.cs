@@ -4,8 +4,9 @@ using System.Web.Http;
 using SomiodWebApplication.Handlers;
 using System.Net.Http;
 using System.Net;
-using System.Xml.Linq;
-using System.Web.UI.WebControls;
+using System.Net.Http.Formatting;
+using Application = SomiodWebApplication.Models.Application;
+using System.Runtime.Serialization;
 
 namespace SomiodWebApplication.Controllers
 {
@@ -19,6 +20,7 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetAllApplications()
         {
             List<Application> objs;
+            var formatter = new XmlMediaTypeFormatter();
 
             try
             {
@@ -26,10 +28,10 @@ namespace SomiodWebApplication.Controllers
             }
             catch (System.Exception)
             {
-                return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.BadRequest, null);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Application(), formatter);
             }
 
-            return Request.CreateResponse<IEnumerable<Application>>(HttpStatusCode.OK, objs);
+            return Request.CreateResponse(HttpStatusCode.OK, objs, formatter);
         }
 
         // GET: api/Somiod/lighting
@@ -38,16 +40,18 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetSpecificApplication(string application_name)
         {
             Application obj;
+            var formatter = new XmlMediaTypeFormatter();
+
             try
             {
                 obj = ApplicationHandler.FindObjectInDatabase(application_name);
             }
             catch (System.Exception)
             {
-                return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Application(), formatter);
             }
 
-            return Request.CreateResponse<Application>(HttpStatusCode.OK, obj);
+            return Request.CreateResponse(HttpStatusCode.OK, obj, formatter);
         }
 
         // POST: api/Somiod
