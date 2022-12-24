@@ -113,7 +113,7 @@ namespace SomiodWebApplication.Controllers
         }
 
         // GET: api/Somiod/lighting/module/light_bulb
-        [Route("api/somiod/{application_name}/modules/{module_name}")] //deixo assim pq penso que deveriamos tirar a constraint UNIQUE do name dos modules
+        [Route("api/somiod/{application_name}/modules/{module_name}")] 
         [HttpGet]
         public HttpResponseMessage GetSpecificModule(string application_name, string module_name)
         {
@@ -121,6 +121,10 @@ namespace SomiodWebApplication.Controllers
             try
             {
                 module = ModuleHandler.FindObjectInDatabase(application_name, module_name);
+                if (module == null)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "There is no module named " + module_name + " in the application " + application_name);
+                }
             }
             catch (System.Exception ex)
             {

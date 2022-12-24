@@ -45,7 +45,8 @@ namespace SomiodWebApplication.Handlers
                     else
                     {
                         connection.Close();
-                        throw new Exception("Error finding object "+  module_name);
+                        return null;
+                        //throw new Exception("Error finding object "+  module_name);
                     }
                 }
                 catch (SqlException ex)
@@ -82,6 +83,7 @@ namespace SomiodWebApplication.Handlers
                         {
                             Id = Convert.ToInt32(reader["Id"]),
                             Name = reader["Name"].ToString(),
+                            Res_type = "module",
                             Creation_dt = Convert.ToDateTime(reader["Creation_dt"]),
                             Parent = Convert.ToInt32(reader["Parent"])
                         };
@@ -107,6 +109,13 @@ namespace SomiodWebApplication.Handlers
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+
+                if(FindObjectInDatabase(application_name, newModuleName) != null)
+                {
+                    throw new Exception("There are already exists a module named "+ newModuleName + " in the application "+ application_name);
+                }
+                
+
                 // Set up the command to insert the object into the database
                 string insertCommand = "INSERT INTO Modules VALUES (@name, @date, @parent)";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
@@ -135,6 +144,7 @@ namespace SomiodWebApplication.Handlers
                 {
                     // Handle any errors that may have occurred
                     Console.WriteLine("Error inserting object into database: " + ex.Message);
+                    throw new Exception(ex.Message);
 
                 }
             }
