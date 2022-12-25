@@ -128,16 +128,17 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetAllModulesFromApplication(string application_name)
         {
             IEnumerable<Module> modules;
+            var formatter = new XmlMediaTypeFormatter();
             try
             {
                 modules = ModuleHandler.FindAllInDatabase(application_name);
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, modules);
+            return Request.CreateResponse(HttpStatusCode.OK, modules, formatter);
         }
 
         // GET: api/Somiod/lighting/light_bulb
@@ -146,20 +147,21 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetSpecificModuleFromApplication(string application_name, string module_name)
         {
             Module module;
+            var formatter = new XmlMediaTypeFormatter();
             try
             {
                 module = ModuleHandler.FindObjectInDatabase(application_name, module_name);
                 if (module == null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "There is no module named " + module_name + " in the application " + application_name);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "There is no module named " + module_name + " in the application " + application_name, formatter);
                 }
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, module);
+            return Request.CreateResponse(HttpStatusCode.OK, module, formatter);
         }
 
         // POST: api/Somiod/lighting
@@ -183,7 +185,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, obj);
+            return Request.CreateResponse(HttpStatusCode.Created, obj);
         }
 
         //DELETE: api/somiod/lighting/light_bulb
@@ -201,7 +203,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted "+module_name+ " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted "+module_name+ " with success!");
         }
 
         //PUT: api/somiod/lighting/light_bulb
@@ -250,10 +252,10 @@ namespace SomiodWebApplication.Controllers
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, "Inserted "+rows + " row");
+            return Request.CreateResponse(HttpStatusCode.Created, "Inserted "+rows + " row");
         }
 
         //DELETE: api/somiod/lighting/light_bulb
@@ -270,7 +272,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted data " + data_id + " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted data " + data_id + " with success!");
         }
 
 
