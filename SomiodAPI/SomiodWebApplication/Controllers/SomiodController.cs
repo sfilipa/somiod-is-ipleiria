@@ -278,7 +278,22 @@ namespace SomiodWebApplication.Controllers
 
         //--- Subscription
 
-        // GET: api/Somiod/lighting/modules/
+        //DELETE: api/somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}/{subscription_name}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteData(string application_name, string module_name, string subscription_name)
+        {
+            try
+            {
+                SubscriptionHandler.DeleteFromDatabase(application_name, module_name, subscription_name);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Subscription>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
+        }
 
         //TODO
         //--- End of Subscription
