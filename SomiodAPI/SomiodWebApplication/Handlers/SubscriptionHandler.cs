@@ -64,10 +64,10 @@ public class SubscriptionHandler
         }
     }
 
-    public static void DeleteFromDatabase(string application_name, string module_name, int subscription_id)
+    public static void DeleteFromDatabase(string application_name, string module_name, string subscription_name)
     {
         // Find the subscription
-        Subscription obj = FindObjectInDatabase(application_name, module_name, subscription_id);
+        Subscription obj = FindObjectInDatabase(application_name, module_name, subscription_name);
         if (obj == null)
         {
             throw new Exception("Subscription Not Found");
@@ -97,7 +97,7 @@ public class SubscriptionHandler
         }
     }
 
-    public static Subscription FindObjectInDatabase(string application_name, string module_name, int subscription_id)
+    public static Subscription FindObjectInDatabase(string application_name, string module_name, string subscription_name)
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
@@ -116,7 +116,7 @@ public class SubscriptionHandler
             // Set up the command to search for the object by name
             string searchCommand = "SELECT * FROM Subscriptions WHERE Id = @Id and Parent = @Parent";
             SqlCommand command = new SqlCommand(searchCommand, connection);
-            command.Parameters.AddWithValue("@Id", subscription_id);
+            command.Parameters.AddWithValue("@Id", subscription_name);
             command.Parameters.AddWithValue("@Parent", module.Id);
 
             try
