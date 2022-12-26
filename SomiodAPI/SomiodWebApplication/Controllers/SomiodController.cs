@@ -203,7 +203,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted "+module_name+ " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
 
         //PUT: api/somiod/lighting/light_bulb
@@ -282,7 +282,7 @@ namespace SomiodWebApplication.Controllers
         }
 
         //DELETE: api/somiod/lighting/light_bulb
-        [Route("api/somiod/{application_name}/{module_name}/{data_id}")]
+        [Route("api/somiod/{application_name}/{module_name}/data/{data_id}")]
         [HttpDelete]
         public HttpResponseMessage DeleteData(string application_name, string module_name, int data_id)
         {
@@ -295,11 +295,11 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted data " + data_id + " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
 
         //DELETE: api/somiod/lighting/light_bulb
-        [Route("api/somiod/{application_name}/{module_name}/{subscription_id}")]
+        [Route("api/somiod/{application_name}/{module_name}/subscription/{subscription_id}")]
         [HttpDelete]
         public HttpResponseMessage DeleteSubscription(string application_name, string module_name, int subscription_id)
         {
