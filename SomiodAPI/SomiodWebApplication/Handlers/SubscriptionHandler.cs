@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using static System.Net.Mime.MediaTypeNames;
 
 public class SubscriptionHandler
 {
@@ -100,19 +101,17 @@ public class SubscriptionHandler
     {
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            // Find Application
-            Application application = ApplicationHandler.FindObjectInDatabase(application_name);
-            if (application == null)
+            // Finds Module
+            Module module = new Module();
+            try
+            {
+                module = ModuleHandler.FindObjectInDatabase(application_name, module_name);
+            }
+            catch (Exception)
             {
                 return null;
             }
 
-            // Find Module 
-            Module module = ModuleHandler.FindObjectInDatabase(application.Name, module_name);
-            if (module == null)
-            {
-                return null;
-            }
 
             // Set up the command to search for the object by name
             string searchCommand = "SELECT * FROM Subscriptions WHERE Id = @Id and Parent = @Parent";
