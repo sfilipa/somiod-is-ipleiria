@@ -7,6 +7,9 @@ using System.Net;
 using System.Net.Http.Formatting;
 using Application = SomiodWebApplication.Models.Application;
 using System.Runtime.Serialization;
+using System;
+using System.EnterpriseServices.Internal;
+using Newtonsoft.Json.Linq;
 
 namespace SomiodWebApplication.Controllers
 {
@@ -230,30 +233,53 @@ namespace SomiodWebApplication.Controllers
         //--- End of Module
 
 
-        //--- Data
+        //--- Data And Subscriptions
 
         // POST: api/Somiod/lighting/light_bulb
         [Route("api/somiod/{application_name}/{module_name}")]
         [HttpPost]
-        public HttpResponseMessage PostData(string application_name, string module_name, [FromBody] Data newData)
+        public HttpResponseMessage PostDataOrSubscription(string application_name, string module_name, [FromBody] JObject newObj)
         {
-            if (newData.Res_type != "data")
+            //--Data
+            if (newObj["res_type"].ToString().Equals("data"))
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'data' res_type");
+                Data data = newObj.ToObject<Data>();
+
+                int rowsInserted = 0;
+
+                try
+                {
+                    rowsInserted = DataHandler.SaveToDatabaseData(data, application_name, module_name);
+                }
+                catch (System.Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Inserted " + rowsInserted + " row");
             }
-
-            int rows = 0;
-
-            try
+            //--Subscription
+            else if (newObj["res_type"].ToString().Equals("subscription"))
             {
-                rows = DataHandler.SaveToDatabaseData(newData, application_name, module_name);
-            }
-            catch (System.Exception ex)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
-            }
+                Subscription subscription = newObj.ToObject<Subscription>();
 
-            return Request.CreateResponse(HttpStatusCode.OK, "Inserted "+rows + " row");
+                int rowsInserted = 0;
+
+                try
+                {
+                    rowsInserted = SubscriptionHandler.SaveToDatabase(application_name, module_name, subscription);
+                }
+                catch (System.Exception ex)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Inserted " + rowsInserted + " row");
+            }
+            //--Neither of them
+            else {
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'data' or 'subscription' res_type, is "+ newObj["res_type"]);
+            }
         }
 
         //DELETE: api/somiod/lighting/light_bulb
@@ -273,15 +299,9 @@ namespace SomiodWebApplication.Controllers
             return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted data " + data_id + " with success!");
         }
 
+        //DELETE: api/somiod/lighting/light_bulb
 
-        //--- End of Data
-
-        //--- Subscription
-
-        // GET: api/Somiod/lighting/modules/
-
-        //TODO
-        //--- End of Subscription
+        //--- End of Data and Subscription
 
     }
 }

@@ -14,5 +14,6 @@ namespace SomiodWebApplication.Models
         public int Parent { get; set; }
         public string Event { get; set; }
         public string Endpoint { get; set; }
+        public string Res_type { get; set; }
     }
 }
