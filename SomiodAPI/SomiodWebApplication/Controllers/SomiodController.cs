@@ -6,9 +6,6 @@ using System.Net.Http;
 using System.Net;
 using System.Net.Http.Formatting;
 using Application = SomiodWebApplication.Models.Application;
-using System.Runtime.Serialization;
-using System;
-using System.EnterpriseServices.Internal;
 using Newtonsoft.Json.Linq;
 
 namespace SomiodWebApplication.Controllers
@@ -131,16 +128,17 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetAllModulesFromApplication(string application_name)
         {
             IEnumerable<Module> modules;
+            var formatter = new XmlMediaTypeFormatter();
             try
             {
                 modules = ModuleHandler.FindAllInDatabase(application_name);
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, modules);
+            return Request.CreateResponse(HttpStatusCode.OK, modules, formatter);
         }
 
         // GET: api/Somiod/lighting/light_bulb
@@ -149,20 +147,21 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage GetSpecificModuleFromApplication(string application_name, string module_name)
         {
             Module module;
+            var formatter = new XmlMediaTypeFormatter();
             try
             {
                 module = ModuleHandler.FindObjectInDatabase(application_name, module_name);
                 if (module == null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, "There is no module named " + module_name + " in the application " + application_name);
+                    return Request.CreateResponse(HttpStatusCode.NotFound, "There is no module named " + module_name + " in the application " + application_name, formatter);
                 }
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, module);
+            return Request.CreateResponse(HttpStatusCode.OK, module, formatter);
         }
 
         // POST: api/Somiod/lighting
@@ -186,7 +185,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.OK, obj);
+            return Request.CreateResponse(HttpStatusCode.Created, obj);
         }
 
         //DELETE: api/somiod/lighting/light_bulb
@@ -204,7 +203,7 @@ namespace SomiodWebApplication.Controllers
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted "+module_name+ " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted "+module_name+ " with success!");
         }
 
         //PUT: api/somiod/lighting/light_bulb
@@ -253,17 +252,17 @@ namespace SomiodWebApplication.Controllers
                 }
                 catch (System.Exception ex)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, "Inserted " + rowsInserted + " row");
+                return Request.CreateResponse(HttpStatusCode.Created, "Inserted " + rowsInserted + " row");
             }
             //--Subscription
             else if (newObj["res_type"].ToString().Equals("subscription"))
             {
                 Subscription subscription = newObj.ToObject<Subscription>();
 
-                int rowsInserted = 0;
+                int rowsInserted;
 
                 try
                 {
@@ -271,10 +270,10 @@ namespace SomiodWebApplication.Controllers
                 }
                 catch (System.Exception ex)
                 {
-                    return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                    return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK, "Inserted " + rowsInserted + " row");
+                return Request.CreateResponse(HttpStatusCode.Created, "Inserted "+rowsInserted+" row");
             }
             //--Neither of them
             else {
@@ -283,23 +282,38 @@ namespace SomiodWebApplication.Controllers
         }
 
         //DELETE: api/somiod/lighting/light_bulb
-        [Route("api/somiod/data/{data_id}")]
+        [Route("api/somiod/{application_name}/{module_name}/{data_id}")]
         [HttpDelete]
-        public HttpResponseMessage DeleteData(int data_id)
+        public HttpResponseMessage DeleteData(string application_name, string module_name, int data_id)
         {
             try
             {
-                DataHandler.DeleteFromDatabase(data_id);
+                DataHandler.DeleteFromDatabase(application_name, module_name, data_id);
             }
             catch (System.Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
-            return Request.CreateResponse(HttpStatusCode.Accepted, "Deleted data " + data_id + " with success!");
+            return Request.CreateResponse(HttpStatusCode.NoContent, "Deleted data " + data_id + " with success!");
         }
 
         //DELETE: api/somiod/lighting/light_bulb
+        [Route("api/somiod/{application_name}/{module_name}/{subscription_id}")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteSubscription(string application_name, string module_name, int subscription_id)
+        {
+            try
+            {
+                SubscriptionHandler.DeleteFromDatabase(application_name, module_name, subscription_id);
+            }
+            catch (System.Exception)
+            {
+                return Request.CreateResponse<Subscription>(HttpStatusCode.BadRequest, null);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.NoContent);
+        }
 
         //--- End of Data and Subscription
 
