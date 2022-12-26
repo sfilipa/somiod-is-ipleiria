@@ -138,6 +138,12 @@ namespace SomiodWebApplication.Handlers
                 throw new Exception("Null Object");
             }
 
+            List<Module> modules = (List<Module>)ModuleHandler.FindAllByParentIDInDatabase(obj.Id);
+            foreach (Module module in modules)
+            {
+                // TODO: Delete module and their children
+            }
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 // Set up the command to delete object from the database

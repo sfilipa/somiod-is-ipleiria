@@ -161,6 +161,77 @@ namespace SomiodWebApplication.Handlers
             }
         }
 
+        public static IEnumerable<Module> FindAllByParentIDInDatabase(int application_id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                List<Module> modules = new List<Module>();
+
+
+                string searchCommand = "SELECT * FROM Modules WHERE Parent = @Parent";
+                SqlCommand command = new SqlCommand(searchCommand, connection);
+                command.Parameters.AddWithValue("@Parent", application_id);
+
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Module obj = new Module
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            Name = reader["Name"].ToString(),
+                            Res_type = "module",
+                            Creation_dt = Convert.ToDateTime(reader["Creation_dt"]),
+                            Parent = Convert.ToInt32(reader["Parent"])
+                        };
+                        modules.Add(obj);
+                    }
+                    reader.Close();
+
+                    foreach (Module module in modules)
+                    {
+                        List<Data> dataArray = new List<Data>();
+                        // Set up the command to search for the object by name
+                        string searchDataCommand = "SELECT * FROM Data WHERE Parent = @ParentData";
+                        SqlCommand commandData = new SqlCommand(searchDataCommand, connection);
+                        commandData.Parameters.AddWithValue("@ParentData", module.Id);
+
+                        SqlDataReader readerData = commandData.ExecuteReader();
+
+                        // Check if the object was found
+                        while (readerData.Read())
+                        {
+
+                            Data objData = new Data();
+
+                            objData.Id = Convert.ToInt32(readerData["Id"]);
+                            objData.Content = readerData["Content"].ToString();
+                            objData.Res_type = "data";
+                            objData.Creation_dt = Convert.ToDateTime(readerData["Creation_dt"]);
+                            objData.Parent = Convert.ToInt32(readerData["Parent"]);
+
+                            dataArray.Add(objData);
+                        }
+                        module.Data = dataArray;
+
+                        readerData.Close();
+                    }
+
+                    connection.Close();
+                }
+                catch (SqlException ex)
+                {
+                    throw ex;
+                }
+
+                return modules;
+            }
+        }
+
         public static Module SaveToDatabaseModule(Module myModule, string application_name)
         {
             // Attributes to send to the DB
