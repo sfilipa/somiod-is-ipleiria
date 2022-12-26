@@ -99,7 +99,6 @@
     <Compile Include="Handlers\DataHandler.cs" />
     <Compile Include="Handlers\ModuleHandler.cs" />
     <Compile Include="Handlers\ApplicationHandler.cs" />
-    <Compile Include="Handlers\SomiodHandler.cs" />
     <Compile Include="Handlers\SubscriptionHandler.cs" />
     <Compile Include="Models\Application.cs" />
     <Compile Include="Models\Data.cs" />

@@ -343,6 +343,15 @@ namespace SomiodWebApplication.Handlers
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+
+                string deleteData = "DELETE FROM Data WHERE Parent = @DataParentId";
+                SqlCommand deleteCommandData = new SqlCommand(deleteData, connection);
+                deleteCommandData.Parameters.AddWithValue("@DataParentId", obj.Id);
+
+                string deleteSubscriptions = "DELETE FROM Subscriptions WHERE Parent = @SubsParentId";
+                SqlCommand deleteCommandSubscriptions = new SqlCommand(deleteSubscriptions, connection);
+                deleteCommandSubscriptions.Parameters.AddWithValue("@SubsParentId", obj.Id);
+
                 // Set up the command to delete object from the database
                 string insertCommand = "DELETE FROM Modules WHERE Name = @name AND Parent = @Parent";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
@@ -353,6 +362,8 @@ namespace SomiodWebApplication.Handlers
                 try
                 {
                     connection.Open();
+                    deleteCommandData.ExecuteNonQuery();
+                    deleteCommandSubscriptions.ExecuteNonQuery();
                     command.ExecuteNonQuery();
                 }
                 catch (SqlException ex)

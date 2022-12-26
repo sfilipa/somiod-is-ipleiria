@@ -196,7 +196,6 @@ namespace SomiodWebApplication.Controllers
             try
             {
                 ModuleHandler.DeleteFromDatabase(application_name, module_name);
-                //depois se tiver FK é preciso tratar dessas exceções
             }
             catch (System.Exception ex)
             {

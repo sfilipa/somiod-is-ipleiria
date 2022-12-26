@@ -73,7 +73,7 @@ namespace SomiodWebApplication.Handlers
                 }
                 catch (SqlException ex)
                 {
-                    throw ex;
+                    throw new Exception(ex.Message);
                 }
             }
         }

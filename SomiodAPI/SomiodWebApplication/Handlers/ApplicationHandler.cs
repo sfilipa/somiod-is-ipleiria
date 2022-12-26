@@ -141,7 +141,7 @@ namespace SomiodWebApplication.Handlers
             List<Module> modules = (List<Module>)ModuleHandler.FindAllByParentIDInDatabase(obj.Id);
             foreach (Module module in modules)
             {
-                // TODO: Delete module and their children
+                ModuleHandler.DeleteFromDatabase(name, module.Name);
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
