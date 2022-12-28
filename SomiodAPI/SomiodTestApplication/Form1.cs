@@ -135,7 +135,7 @@ namespace SomiodTestApplication
             string requestURI = "/api/somiod/" + applicationName;
             try
             {
-                RequestsHandler.deleteApplication(requestURI, client);
+                RequestsHandler.delete(requestURI, client);
             }
             catch (Exception ex)
             {
@@ -262,7 +262,7 @@ namespace SomiodTestApplication
             string requestURI = "/api/somiod/" + applicationName + "/" + moduleName;
             try
             {
-                RequestsHandler.deleteModule(requestURI, client);
+                RequestsHandler.delete(requestURI, client);
             }
             catch (Exception ex)
             {
@@ -281,5 +281,85 @@ namespace SomiodTestApplication
         }
 
         //--------------------- END OF MODULES ---------------------
+
+        //--------------------- DATA ---------------------
+        private void buttonPOSTData_Click(object sender, EventArgs e)
+        {
+            // Verifies if Application Name Input is Empty
+            string applicationName = textBoxApplicationNameData.Text;
+            if (applicationName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
+
+            string moduleName = textBoxModuleNameData.Text;
+            if (moduleName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the new module name");
+                return;
+            }
+
+            string dataContent = richTextBoxDataContent.Text;
+            if (dataContent.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter some data content");
+                return;
+            }
+
+            // Makes the Put Request
+            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName;
+            try
+            {
+                RequestsHandler.createData(requestURI, client, applicationName, moduleName,dataContent);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void buttonDELData_Click(object sender, EventArgs e)
+        {
+            // Verifies if Application Name Input is Empty
+            string applicationName = textBoxApplicationNameData.Text;
+            if (applicationName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
+
+            string moduleName = textBoxModuleNameData.Text;
+            if (moduleName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the new module name");
+                return;
+            }
+
+            string dataId = textBoxDataID.Text;
+            if (dataId.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the data ID");
+                return;
+            }
+
+            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName + "/data" + "/" + dataId;
+            try
+            {
+                RequestsHandler.delete(requestURI, client);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+        
+        //--------------------- END OF DATA ---------------------
+
+
+        //--------------------- SUBSCRIPTION ---------------------
+
+        //--------------------- END OF SUBSCRIPTION ---------------------
     }
 }

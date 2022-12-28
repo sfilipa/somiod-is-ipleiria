@@ -13,31 +13,8 @@ namespace SomiodTestApplication
 {
     internal class RequestsHandler
     {
-        static public void createApplication(string requestURI, RestClient client, string applicationName)
-        {
-            try
-            {
-                // Creates the Object Application
-                SomiodWebApplication.Models.Application application = new SomiodWebApplication.Models.Application
-                {
-                    Name = applicationName,
-                    Res_type = "application"
-                };
 
-
-                var request = new RestRequest("/api/somiod", Method.Post);
-                
-                // Adds the message body to the response
-                request.AddObject(application);
-
-                RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+        //--------------------- COMMON METHODS ---------------------
 
         static public XmlDocument getResponseAsXMLDocument(string requestURI, RestClient client, string res_type)
         {
@@ -64,6 +41,50 @@ namespace SomiodTestApplication
             }
         }
 
+        
+        static public void delete(string requestURI, RestClient client)
+        {
+            try
+            {
+                // Creates and Executes a Delete request
+                RestRequest request = new RestRequest(requestURI, Method.Delete);
+                RestResponse response = client.Execute(request);
+                // Shows Status Code
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+        //--------------------- END OF COMMON METHODS ---------------------
+
+        //--------------------- APPLICATION ---------------------
+        static public void createApplication(string requestURI, RestClient client, string applicationName)
+        {
+            try
+            {
+                // Creates the Object Application
+                SomiodWebApplication.Models.Application application = new SomiodWebApplication.Models.Application
+                {
+                    Name = applicationName,
+                    Res_type = "application"
+                };
+
+
+                var request = new RestRequest("/api/somiod", Method.Post);
+
+                // Adds the message body to the response
+                request.AddObject(application);
+
+                RestResponse response = client.Execute(request);
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
         static public void updateApplicationName(string requestURI, RestClient client, string newApplicationName)
         {
             try
@@ -91,22 +112,9 @@ namespace SomiodTestApplication
             }
         }
 
-        static public void deleteApplication(string requestURI, RestClient client)
-        {
-            try
-            {
-                // Creates and Executes a Delete request
-                RestRequest request = new RestRequest(requestURI, Method.Delete);
-                RestResponse response = client.Execute(request);
-                // Shows Status Code
-                MessageBox.Show(response.StatusCode.ToString());
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
+        //--------------------- END OF APPLICATION ---------------------
+        
+        //--------------------- MODULES ---------------------
         static public void createModule(string requestURI, RestClient client, string applicationName, string moduleName)
         {
             try
@@ -159,14 +167,29 @@ namespace SomiodTestApplication
             }
         }
 
-        static public void deleteModule(string requestURI, RestClient client)
+
+        //--------------------- END OF MODULES ---------------------
+
+        //--------------------- DATA ---------------------
+
+        static public void createData(string requestURI, RestClient client, string applicationName, string moduleName, string dataContent)
         {
             try
             {
-                RestRequest request = new RestRequest(requestURI, Method.Delete);
+                // Creates the Object Application
+                SomiodWebApplication.Models.Data data = new SomiodWebApplication.Models.Data
+                {
+                    Content = dataContent,
+                    Res_type = "data"
+                };
+
+
+                var request = new RestRequest("/api/somiod/" + applicationName + "/" + moduleName, Method.Post);
+
+                // Adds the message body to the response
+                request.AddObject(data);
 
                 RestResponse response = client.Execute(request);
-                // Shows Status Code
                 MessageBox.Show(response.StatusCode.ToString());
             }
             catch (Exception e)
@@ -174,5 +197,11 @@ namespace SomiodTestApplication
                 throw new Exception(e.Message);
             }
         }
+        //--------------------- END OF DATA ---------------------
+
+        //--------------------- SUBSCRIPTION ---------------------
+
+        //--------------------- END OF SUBSCRIPTION ---------------------
+
     }
 }

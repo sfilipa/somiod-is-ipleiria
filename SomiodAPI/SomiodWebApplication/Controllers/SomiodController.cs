@@ -239,7 +239,7 @@ namespace SomiodWebApplication.Controllers
         public HttpResponseMessage PostDataOrSubscription(string application_name, string module_name, [FromBody] JObject newObj)
         {
             //--Data
-            if (newObj["res_type"].ToString().Equals("data"))
+            if (newObj["Res_type"].ToString().Equals("data"))
             {
                 Data data = newObj.ToObject<Data>();
 
