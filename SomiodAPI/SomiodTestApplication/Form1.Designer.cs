@@ -40,6 +40,7 @@
             this.buttonPUTApplication = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBoxListApplications = new System.Windows.Forms.RichTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxApplicationNewName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -55,7 +56,7 @@
             this.textBoxApplicationNameModule = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxGetModuleName = new System.Windows.Forms.TextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBoxSpecificModule = new System.Windows.Forms.RichTextBox();
             this.buttonGetModule = new System.Windows.Forms.Button();
             this.buttonGetAllModules = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
@@ -84,7 +85,6 @@
             this.textBoxApplicationNameSubscription = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.richTextBoxListApplications = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -222,6 +222,14 @@
             this.tabPage1.Text = "Application";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // richTextBoxListApplications
+            // 
+            this.richTextBoxListApplications.Location = new System.Drawing.Point(7, 48);
+            this.richTextBoxListApplications.Name = "richTextBoxListApplications";
+            this.richTextBoxListApplications.Size = new System.Drawing.Size(388, 179);
+            this.richTextBoxListApplications.TabIndex = 13;
+            this.richTextBoxListApplications.Text = "";
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -253,7 +261,7 @@
             this.tabPage2.Controls.Add(this.textBoxApplicationNameModule);
             this.tabPage2.Controls.Add(this.label4);
             this.tabPage2.Controls.Add(this.textBoxGetModuleName);
-            this.tabPage2.Controls.Add(this.richTextBox1);
+            this.tabPage2.Controls.Add(this.richTextBoxSpecificModule);
             this.tabPage2.Controls.Add(this.buttonGetModule);
             this.tabPage2.Controls.Add(this.buttonGetAllModules);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -275,59 +283,63 @@
             // 
             // buttonDELModule
             // 
-            this.buttonDELModule.Location = new System.Drawing.Point(591, 205);
+            this.buttonDELModule.Location = new System.Drawing.Point(657, 129);
             this.buttonDELModule.Name = "buttonDELModule";
-            this.buttonDELModule.Size = new System.Drawing.Size(124, 22);
+            this.buttonDELModule.Size = new System.Drawing.Size(109, 22);
             this.buttonDELModule.TabIndex = 16;
             this.buttonDELModule.Text = "DEL (Delete)";
             this.buttonDELModule.UseVisualStyleBackColor = true;
+            this.buttonDELModule.Click += new System.EventHandler(this.buttonDELModule_Click);
             // 
             // buttonPUTModule
             // 
-            this.buttonPUTModule.Location = new System.Drawing.Point(591, 177);
+            this.buttonPUTModule.Location = new System.Drawing.Point(657, 172);
             this.buttonPUTModule.Name = "buttonPUTModule";
-            this.buttonPUTModule.Size = new System.Drawing.Size(124, 22);
+            this.buttonPUTModule.Size = new System.Drawing.Size(109, 22);
             this.buttonPUTModule.TabIndex = 15;
             this.buttonPUTModule.Text = "PUT (Update)";
             this.buttonPUTModule.UseVisualStyleBackColor = true;
+            this.buttonPUTModule.Click += new System.EventHandler(this.buttonPUTModule_Click);
             // 
             // buttonPOSTModule
             // 
-            this.buttonPOSTModule.Location = new System.Drawing.Point(591, 149);
+            this.buttonPOSTModule.Location = new System.Drawing.Point(657, 101);
             this.buttonPOSTModule.Name = "buttonPOSTModule";
-            this.buttonPOSTModule.Size = new System.Drawing.Size(124, 22);
+            this.buttonPOSTModule.Size = new System.Drawing.Size(109, 22);
             this.buttonPOSTModule.TabIndex = 14;
             this.buttonPOSTModule.Text = "POST (Create)";
             this.buttonPOSTModule.UseVisualStyleBackColor = true;
+            this.buttonPOSTModule.Click += new System.EventHandler(this.buttonPOSTModule_Click);
             // 
             // textBoxModuleNewName
             // 
-            this.textBoxModuleNewName.Location = new System.Drawing.Point(591, 109);
+            this.textBoxModuleNewName.Location = new System.Drawing.Point(526, 174);
             this.textBoxModuleNewName.Name = "textBoxModuleNewName";
-            this.textBoxModuleNewName.Size = new System.Drawing.Size(124, 20);
+            this.textBoxModuleNewName.Size = new System.Drawing.Size(110, 20);
             this.textBoxModuleNewName.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(482, 112);
+            this.label7.Location = new System.Drawing.Point(419, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 13);
             this.label7.TabIndex = 12;
             this.label7.Text = "New Module Name:";
             this.label7.UseMnemonic = false;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // textBoxModuleName
             // 
-            this.textBoxModuleName.Location = new System.Drawing.Point(591, 83);
+            this.textBoxModuleName.Location = new System.Drawing.Point(526, 101);
             this.textBoxModuleName.Name = "textBoxModuleName";
-            this.textBoxModuleName.Size = new System.Drawing.Size(124, 20);
+            this.textBoxModuleName.Size = new System.Drawing.Size(110, 20);
             this.textBoxModuleName.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(482, 86);
+            this.label5.Location = new System.Drawing.Point(419, 104);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(76, 13);
             this.label5.TabIndex = 10;
@@ -368,15 +380,16 @@
             this.textBoxGetModuleName.Name = "textBoxGetModuleName";
             this.textBoxGetModuleName.Size = new System.Drawing.Size(100, 20);
             this.textBoxGetModuleName.TabIndex = 5;
+            this.textBoxGetModuleName.TextChanged += new System.EventHandler(this.textBoxGetModuleName_TextChanged);
             // 
-            // richTextBox1
+            // richTextBoxSpecificModule
             // 
-            this.richTextBox1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBox1.Location = new System.Drawing.Point(6, 286);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(388, 52);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.richTextBoxSpecificModule.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBoxSpecificModule.Location = new System.Drawing.Point(6, 286);
+            this.richTextBoxSpecificModule.Name = "richTextBoxSpecificModule";
+            this.richTextBoxSpecificModule.Size = new System.Drawing.Size(391, 84);
+            this.richTextBoxSpecificModule.TabIndex = 4;
+            this.richTextBoxSpecificModule.Text = "";
             // 
             // buttonGetModule
             // 
@@ -386,6 +399,7 @@
             this.buttonGetModule.TabIndex = 3;
             this.buttonGetModule.Text = "Get Module";
             this.buttonGetModule.UseVisualStyleBackColor = true;
+            this.buttonGetModule.Click += new System.EventHandler(this.buttonGetModule_Click);
             // 
             // buttonGetAllModules
             // 
@@ -653,14 +667,6 @@
             this.label12.Text = "Application Name:";
             this.label12.UseMnemonic = false;
             // 
-            // richTextBoxListApplications
-            // 
-            this.richTextBoxListApplications.Location = new System.Drawing.Point(7, 48);
-            this.richTextBoxListApplications.Name = "richTextBoxListApplications";
-            this.richTextBoxListApplications.Size = new System.Drawing.Size(388, 179);
-            this.richTextBoxListApplications.TabIndex = 13;
-            this.richTextBoxListApplications.Text = "";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -703,7 +709,7 @@
         private System.Windows.Forms.TextBox textBoxApplicationNewName;
         private System.Windows.Forms.Button buttonGetAllModules;
         private System.Windows.Forms.Button buttonGetModule;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBoxSpecificModule;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxGetModuleName;
         private System.Windows.Forms.TextBox textBoxApplicationNameModule;
