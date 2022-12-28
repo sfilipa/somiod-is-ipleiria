@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SomiodTestApplication
@@ -24,11 +25,27 @@ namespace SomiodTestApplication
 
         private void button1_Click(object sender, EventArgs e)
         {
+            string requestURI = "/api/somiod/";
+            XmlDocument doc = RequestsHandler.getApplicationsAsAXMLDocument(requestURI, client);
+
+            // Loads the XML document to the RichTextBox
+            richTextBoxListApplications.Text = doc.InnerXml;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+            string applicationName = textBoxGetApplicationByName.Text;
+            if (applicationName == "")
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
 
+            string requestURI = "/api/somiod/" + applicationName;
+            XmlDocument doc = RequestsHandler.getApplicationsAsAXMLDocument(requestURI, client);
+
+            // Loads the XML document to the RichTextBox
+            richTextBoxApplication.Text = doc.InnerXml;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -63,18 +80,76 @@ namespace SomiodTestApplication
 
         private void buttonPOSTApplication_Click(object sender, EventArgs e)
         {
+            // Verifies if Application Name Input is Empty
             string applicationName = textBoxApplicationName.Text;
-            SomiodWebApplication.Models.Application application = new SomiodWebApplication.Models.Application
+            if (applicationName == "")
             {
-                Name = applicationName,
-                Res_type = "application"
-            };
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
 
-            var request = new RestRequest("/api/somiod", Method.Post);
-            request.AddObject(application);
+            // Makes the Put Request
+            string requestURI = "/api/somiod/";
+            try
+            {
+                RequestsHandler.createApplication(requestURI, client, applicationName);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-            RestResponse response = client.Execute(request);
-            MessageBox.Show(response.StatusCode.ToString());
+        private void buttonPUTApplication_Click(object sender, EventArgs e)
+        {
+            // Verifies if Application Name Input is Empty
+            string applicationName = textBoxApplicationName.Text;
+            if (applicationName == "")
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
+
+            // Verifies if New Application Name Input is Empty
+            string newApplicationName = textBoxApplicationNewName.Text;
+            if (newApplicationName == "")
+            {
+                MessageBox.Show("Please enter the new application name");
+                return;
+            }
+
+            // Makes the Put Request
+            string requestURI = "/api/somiod/" + applicationName;
+            try
+            {
+                RequestsHandler.updateApplicationName(requestURI, client, newApplicationName);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        private void buttonDELApplication_Click(object sender, EventArgs e)
+        {
+            // Verifies if Application Name Input is Empty
+            string applicationName = textBoxApplicationName.Text;
+            if (applicationName == "")
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
+
+            // Makes the Put Request
+            string requestURI = "/api/somiod/" + applicationName;
+            try
+            {
+                RequestsHandler.deleteApplication(requestURI, client);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

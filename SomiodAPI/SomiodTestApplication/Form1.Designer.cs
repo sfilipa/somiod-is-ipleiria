@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.buttonGetAllApps = new System.Windows.Forms.Button();
-            this.buttonGetApp = new System.Windows.Forms.Button();
+            this.buttonGetAllApplications = new System.Windows.Forms.Button();
+            this.buttonGetApplication = new System.Windows.Forms.Button();
             this.richTextBoxApplication = new System.Windows.Forms.RichTextBox();
             this.textBoxGetApplicationByName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +43,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxApplicationNewName = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.richTextBoxListModules = new System.Windows.Forms.RichTextBox();
             this.buttonDELModule = new System.Windows.Forms.Button();
             this.buttonPUTModule = new System.Windows.Forms.Button();
             this.buttonPOSTModule = new System.Windows.Forms.Button();
@@ -84,7 +85,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.richTextBoxListApplications = new System.Windows.Forms.RichTextBox();
-            this.richTextBoxListModules = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,32 +92,32 @@
             this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
-            // buttonGetAllApps
+            // buttonGetAllApplications
             // 
-            this.buttonGetAllApps.Location = new System.Drawing.Point(6, 23);
-            this.buttonGetAllApps.Name = "buttonGetAllApps";
-            this.buttonGetAllApps.Size = new System.Drawing.Size(124, 22);
-            this.buttonGetAllApps.TabIndex = 0;
-            this.buttonGetAllApps.Text = "Get All Applications";
-            this.buttonGetAllApps.UseVisualStyleBackColor = true;
-            this.buttonGetAllApps.Click += new System.EventHandler(this.button1_Click);
+            this.buttonGetAllApplications.Location = new System.Drawing.Point(6, 23);
+            this.buttonGetAllApplications.Name = "buttonGetAllApplications";
+            this.buttonGetAllApplications.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetAllApplications.TabIndex = 0;
+            this.buttonGetAllApplications.Text = "Get All Applications";
+            this.buttonGetAllApplications.UseVisualStyleBackColor = true;
+            this.buttonGetAllApplications.Click += new System.EventHandler(this.button1_Click);
             // 
-            // buttonGetApp
+            // buttonGetApplication
             // 
-            this.buttonGetApp.Location = new System.Drawing.Point(6, 231);
-            this.buttonGetApp.Name = "buttonGetApp";
-            this.buttonGetApp.Size = new System.Drawing.Size(124, 22);
-            this.buttonGetApp.TabIndex = 2;
-            this.buttonGetApp.Text = "Get Application";
-            this.buttonGetApp.UseVisualStyleBackColor = true;
-            this.buttonGetApp.Click += new System.EventHandler(this.button2_Click);
+            this.buttonGetApplication.Location = new System.Drawing.Point(6, 231);
+            this.buttonGetApplication.Name = "buttonGetApplication";
+            this.buttonGetApplication.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetApplication.TabIndex = 2;
+            this.buttonGetApplication.Text = "Get Application";
+            this.buttonGetApplication.UseVisualStyleBackColor = true;
+            this.buttonGetApplication.Click += new System.EventHandler(this.button2_Click);
             // 
             // richTextBoxApplication
             // 
             this.richTextBoxApplication.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxApplication.Location = new System.Drawing.Point(7, 259);
             this.richTextBoxApplication.Name = "richTextBoxApplication";
-            this.richTextBoxApplication.Size = new System.Drawing.Size(388, 52);
+            this.richTextBoxApplication.Size = new System.Drawing.Size(388, 65);
             this.richTextBoxApplication.TabIndex = 3;
             this.richTextBoxApplication.Text = "";
             // 
@@ -175,6 +175,7 @@
             this.buttonDELApplication.TabIndex = 9;
             this.buttonDELApplication.Text = "DEL (Delete)";
             this.buttonDELApplication.UseVisualStyleBackColor = true;
+            this.buttonDELApplication.Click += new System.EventHandler(this.buttonDELApplication_Click);
             // 
             // buttonPUTApplication
             // 
@@ -184,6 +185,7 @@
             this.buttonPUTApplication.TabIndex = 10;
             this.buttonPUTApplication.Text = "PUT (Update)";
             this.buttonPUTApplication.UseVisualStyleBackColor = true;
+            this.buttonPUTApplication.Click += new System.EventHandler(this.buttonPUTApplication_Click);
             // 
             // tabControl1
             // 
@@ -195,21 +197,21 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(786, 413);
-            this.tabControl1.TabIndex = 11;
+            this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
             // 
             this.tabPage1.Controls.Add(this.richTextBoxListApplications);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.textBoxApplicationNewName);
-            this.tabPage1.Controls.Add(this.buttonGetAllApps);
+            this.tabPage1.Controls.Add(this.buttonGetAllApplications);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.textBoxApplicationName);
             this.tabPage1.Controls.Add(this.buttonPOSTApplication);
             this.tabPage1.Controls.Add(this.buttonPUTApplication);
             this.tabPage1.Controls.Add(this.buttonDELApplication);
             this.tabPage1.Controls.Add(this.richTextBoxApplication);
-            this.tabPage1.Controls.Add(this.buttonGetApp);
+            this.tabPage1.Controls.Add(this.buttonGetApplication);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.textBoxGetApplicationByName);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -261,6 +263,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Module";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxListModules
+            // 
+            this.richTextBoxListModules.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.richTextBoxListModules.Location = new System.Drawing.Point(9, 83);
+            this.richTextBoxListModules.Name = "richTextBoxListModules";
+            this.richTextBoxListModules.Size = new System.Drawing.Size(388, 144);
+            this.richTextBoxListModules.TabIndex = 17;
+            this.richTextBoxListModules.Text = "";
             // 
             // buttonDELModule
             // 
@@ -644,27 +655,17 @@
             // 
             // richTextBoxListApplications
             // 
-            this.richTextBoxListApplications.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxListApplications.Location = new System.Drawing.Point(7, 51);
+            this.richTextBoxListApplications.Location = new System.Drawing.Point(7, 48);
             this.richTextBoxListApplications.Name = "richTextBoxListApplications";
-            this.richTextBoxListApplications.Size = new System.Drawing.Size(388, 147);
+            this.richTextBoxListApplications.Size = new System.Drawing.Size(388, 179);
             this.richTextBoxListApplications.TabIndex = 13;
             this.richTextBoxListApplications.Text = "";
-            // 
-            // richTextBoxListModules
-            // 
-            this.richTextBoxListModules.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxListModules.Location = new System.Drawing.Point(9, 83);
-            this.richTextBoxListModules.Name = "richTextBoxListModules";
-            this.richTextBoxListModules.Size = new System.Drawing.Size(388, 144);
-            this.richTextBoxListModules.TabIndex = 17;
-            this.richTextBoxListModules.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(792, 419);
             this.Controls.Add(this.tabControl1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -683,8 +684,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button buttonGetAllApps;
-        private System.Windows.Forms.Button buttonGetApp;
+        private System.Windows.Forms.Button buttonGetAllApplications;
+        private System.Windows.Forms.Button buttonGetApplication;
         private System.Windows.Forms.RichTextBox richTextBoxApplication;
         private System.Windows.Forms.TextBox textBoxGetApplicationByName;
         private System.Windows.Forms.Label label1;
@@ -738,8 +739,8 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox textBoxSubscriptionNameDEL;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.RichTextBox richTextBoxListApplications;
         private System.Windows.Forms.RichTextBox richTextBoxListModules;
+        private System.Windows.Forms.RichTextBox richTextBoxListApplications;
     }
 }
 
