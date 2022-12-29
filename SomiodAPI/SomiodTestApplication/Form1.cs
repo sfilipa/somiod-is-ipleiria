@@ -365,7 +365,6 @@ namespace SomiodTestApplication
 
         private void buttonPOSTSubscription_Click(object sender, EventArgs e)
         {
-            // Verifies if Application Name Input is Empty
             string applicationName = textBoxApplicationNameSubscription.Text;
             if (applicationName.Trim().Length == 0)
             {
@@ -408,26 +407,17 @@ namespace SomiodTestApplication
             }
         }
 
-<<<<<<< HEAD
-        private void buttonDELSubscription_Click(object sender, EventArgs e)
+        private void buttonDELSubscription_Click_1(object sender, EventArgs e)
         {
             // Verifies if Application Name Input is Empty
-            string applicationName = textBoxApplicationNameData.Text;
+            string applicationName = textBoxApplicationNameSubscription.Text;
             if (applicationName.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter the application name");
                 return;
             }
-=======
-        private void comboBoxSubscriptionEvents_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        //--------------------- END OF DATA ---------------------
->>>>>>> 993b6b67fea25058567e76ce900edf33e25b374b
-
-            string moduleName = textBoxModuleNameData.Text;
+            string moduleName = textBoxModuleNameSubscription.Text;
             if (moduleName.Trim().Length == 0)
             {
                 MessageBox.Show("Please enter the new module name");
@@ -441,7 +431,7 @@ namespace SomiodTestApplication
                 return;
             }
 
-            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName + "/data" + "/" + subscriptionName;
+            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName + "/subscription" + "/" + subscriptionName;
             try
             {
                 RequestsHandler.delete(requestURI, client);
@@ -450,7 +440,6 @@ namespace SomiodTestApplication
             {
                 throw new Exception(ex.Message);
             }
-
         }
         //--------------------- END OF SUBSCRIPTION ---------------------
     }

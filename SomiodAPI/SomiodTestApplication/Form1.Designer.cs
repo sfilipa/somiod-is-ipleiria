@@ -93,7 +93,7 @@
             // buttonGetAllApplications
             // 
             this.buttonGetAllApplications.Location = new System.Drawing.Point(8, 28);
-            this.buttonGetAllApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGetAllApplications.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGetAllApplications.Name = "buttonGetAllApplications";
             this.buttonGetAllApplications.Size = new System.Drawing.Size(165, 27);
             this.buttonGetAllApplications.TabIndex = 0;
@@ -104,7 +104,7 @@
             // buttonGetApplication
             // 
             this.buttonGetApplication.Location = new System.Drawing.Point(8, 284);
-            this.buttonGetApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGetApplication.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGetApplication.Name = "buttonGetApplication";
             this.buttonGetApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonGetApplication.TabIndex = 2;
@@ -116,7 +116,7 @@
             // 
             this.richTextBoxApplication.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxApplication.Location = new System.Drawing.Point(9, 319);
-            this.richTextBoxApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxApplication.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxApplication.Name = "richTextBoxApplication";
             this.richTextBoxApplication.Size = new System.Drawing.Size(516, 79);
             this.richTextBoxApplication.TabIndex = 3;
@@ -125,7 +125,7 @@
             // textBoxGetApplicationByName
             // 
             this.textBoxGetApplicationByName.Location = new System.Drawing.Point(277, 287);
-            this.textBoxGetApplicationByName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxGetApplicationByName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxGetApplicationByName.Name = "textBoxGetApplicationByName";
             this.textBoxGetApplicationByName.Size = new System.Drawing.Size(132, 22);
             this.textBoxGetApplicationByName.TabIndex = 4;
@@ -156,7 +156,7 @@
             // textBoxApplicationName
             // 
             this.textBoxApplicationName.Location = new System.Drawing.Point(725, 59);
-            this.textBoxApplicationName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxApplicationName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
             this.textBoxApplicationName.Size = new System.Drawing.Size(164, 22);
             this.textBoxApplicationName.TabIndex = 7;
@@ -165,7 +165,7 @@
             // buttonPOSTApplication
             // 
             this.buttonPOSTApplication.Location = new System.Drawing.Point(725, 148);
-            this.buttonPOSTApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPOSTApplication.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPOSTApplication.Name = "buttonPOSTApplication";
             this.buttonPOSTApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTApplication.TabIndex = 8;
@@ -176,7 +176,7 @@
             // buttonDELApplication
             // 
             this.buttonDELApplication.Location = new System.Drawing.Point(725, 217);
-            this.buttonDELApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDELApplication.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDELApplication.Name = "buttonDELApplication";
             this.buttonDELApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonDELApplication.TabIndex = 9;
@@ -187,7 +187,7 @@
             // buttonPUTApplication
             // 
             this.buttonPUTApplication.Location = new System.Drawing.Point(725, 182);
-            this.buttonPUTApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPUTApplication.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPUTApplication.Name = "buttonPUTApplication";
             this.buttonPUTApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonPUTApplication.TabIndex = 10;
@@ -202,7 +202,7 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Location = new System.Drawing.Point(3, 4);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1048, 508);
@@ -224,9 +224,9 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.textBoxGetApplicationByName);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(1040, 479);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Application";
@@ -236,7 +236,7 @@
             // 
             this.richTextBoxListApplications.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxListApplications.Location = new System.Drawing.Point(9, 59);
-            this.richTextBoxListApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxListApplications.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxListApplications.Name = "richTextBoxListApplications";
             this.richTextBoxListApplications.Size = new System.Drawing.Size(516, 219);
             this.richTextBoxListApplications.TabIndex = 13;
@@ -256,7 +256,7 @@
             // textBoxApplicationNewName
             // 
             this.textBoxApplicationNewName.Location = new System.Drawing.Point(725, 91);
-            this.textBoxApplicationNewName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxApplicationNewName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxApplicationNewName.Name = "textBoxApplicationNewName";
             this.textBoxApplicationNewName.Size = new System.Drawing.Size(164, 22);
             this.textBoxApplicationNewName.TabIndex = 11;
@@ -279,9 +279,9 @@
             this.tabPage2.Controls.Add(this.buttonGetModule);
             this.tabPage2.Controls.Add(this.buttonGetAllModules);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(1040, 479);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Module";
@@ -291,7 +291,7 @@
             // 
             this.richTextBoxListModules.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxListModules.Location = new System.Drawing.Point(12, 102);
-            this.richTextBoxListModules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxListModules.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxListModules.Name = "richTextBoxListModules";
             this.richTextBoxListModules.Size = new System.Drawing.Size(516, 176);
             this.richTextBoxListModules.TabIndex = 17;
@@ -300,7 +300,7 @@
             // buttonDELModule
             // 
             this.buttonDELModule.Location = new System.Drawing.Point(876, 159);
-            this.buttonDELModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDELModule.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDELModule.Name = "buttonDELModule";
             this.buttonDELModule.Size = new System.Drawing.Size(145, 27);
             this.buttonDELModule.TabIndex = 16;
@@ -311,7 +311,7 @@
             // buttonPUTModule
             // 
             this.buttonPUTModule.Location = new System.Drawing.Point(876, 212);
-            this.buttonPUTModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPUTModule.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPUTModule.Name = "buttonPUTModule";
             this.buttonPUTModule.Size = new System.Drawing.Size(145, 27);
             this.buttonPUTModule.TabIndex = 15;
@@ -322,7 +322,7 @@
             // buttonPOSTModule
             // 
             this.buttonPOSTModule.Location = new System.Drawing.Point(876, 124);
-            this.buttonPOSTModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPOSTModule.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPOSTModule.Name = "buttonPOSTModule";
             this.buttonPOSTModule.Size = new System.Drawing.Size(145, 27);
             this.buttonPOSTModule.TabIndex = 14;
@@ -333,7 +333,7 @@
             // textBoxModuleNewName
             // 
             this.textBoxModuleNewName.Location = new System.Drawing.Point(701, 214);
-            this.textBoxModuleNewName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxModuleNewName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxModuleNewName.Name = "textBoxModuleNewName";
             this.textBoxModuleNewName.Size = new System.Drawing.Size(145, 22);
             this.textBoxModuleNewName.TabIndex = 13;
@@ -353,7 +353,7 @@
             // textBoxModuleName
             // 
             this.textBoxModuleName.Location = new System.Drawing.Point(701, 124);
-            this.textBoxModuleName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxModuleName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxModuleName.Name = "textBoxModuleName";
             this.textBoxModuleName.Size = new System.Drawing.Size(145, 22);
             this.textBoxModuleName.TabIndex = 11;
@@ -384,7 +384,7 @@
             // textBoxApplicationNameModule
             // 
             this.textBoxApplicationNameModule.Location = new System.Drawing.Point(140, 15);
-            this.textBoxApplicationNameModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxApplicationNameModule.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxApplicationNameModule.Name = "textBoxApplicationNameModule";
             this.textBoxApplicationNameModule.Size = new System.Drawing.Size(132, 22);
             this.textBoxApplicationNameModule.TabIndex = 8;
@@ -403,7 +403,7 @@
             // textBoxGetModuleName
             // 
             this.textBoxGetModuleName.Location = new System.Drawing.Point(291, 320);
-            this.textBoxGetModuleName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxGetModuleName.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxGetModuleName.Name = "textBoxGetModuleName";
             this.textBoxGetModuleName.Size = new System.Drawing.Size(132, 22);
             this.textBoxGetModuleName.TabIndex = 5;
@@ -413,7 +413,7 @@
             // 
             this.richTextBoxSpecificModule.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxSpecificModule.Location = new System.Drawing.Point(8, 352);
-            this.richTextBoxSpecificModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxSpecificModule.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxSpecificModule.Name = "richTextBoxSpecificModule";
             this.richTextBoxSpecificModule.Size = new System.Drawing.Size(520, 102);
             this.richTextBoxSpecificModule.TabIndex = 4;
@@ -422,7 +422,7 @@
             // buttonGetModule
             // 
             this.buttonGetModule.Location = new System.Drawing.Point(8, 318);
-            this.buttonGetModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGetModule.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGetModule.Name = "buttonGetModule";
             this.buttonGetModule.Size = new System.Drawing.Size(165, 27);
             this.buttonGetModule.TabIndex = 3;
@@ -433,7 +433,7 @@
             // buttonGetAllModules
             // 
             this.buttonGetAllModules.Location = new System.Drawing.Point(8, 68);
-            this.buttonGetAllModules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonGetAllModules.Margin = new System.Windows.Forms.Padding(4);
             this.buttonGetAllModules.Name = "buttonGetAllModules";
             this.buttonGetAllModules.Size = new System.Drawing.Size(165, 27);
             this.buttonGetAllModules.TabIndex = 1;
@@ -454,7 +454,7 @@
             this.tabPage3.Controls.Add(this.textBoxApplicationNameData);
             this.tabPage3.Controls.Add(this.label8);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
-            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1040, 479);
             this.tabPage3.TabIndex = 2;
@@ -464,7 +464,7 @@
             // buttonDELData
             // 
             this.buttonDELData.Location = new System.Drawing.Point(680, 14);
-            this.buttonDELData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDELData.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDELData.Name = "buttonDELData";
             this.buttonDELData.Size = new System.Drawing.Size(165, 27);
             this.buttonDELData.TabIndex = 19;
@@ -475,7 +475,7 @@
             // textBoxDataID
             // 
             this.textBoxDataID.Location = new System.Drawing.Point(524, 14);
-            this.textBoxDataID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxDataID.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxDataID.Name = "textBoxDataID";
             this.textBoxDataID.Size = new System.Drawing.Size(132, 22);
             this.textBoxDataID.TabIndex = 18;
@@ -494,7 +494,7 @@
             // buttonPOSTData
             // 
             this.buttonPOSTData.Location = new System.Drawing.Point(12, 220);
-            this.buttonPOSTData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPOSTData.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPOSTData.Name = "buttonPOSTData";
             this.buttonPOSTData.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTData.TabIndex = 16;
@@ -506,7 +506,7 @@
             // 
             this.richTextBoxDataContent.BackColor = System.Drawing.SystemColors.MenuBar;
             this.richTextBoxDataContent.Location = new System.Drawing.Point(12, 129);
-            this.richTextBoxDataContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.richTextBoxDataContent.Margin = new System.Windows.Forms.Padding(4);
             this.richTextBoxDataContent.Name = "richTextBoxDataContent";
             this.richTextBoxDataContent.Size = new System.Drawing.Size(375, 83);
             this.richTextBoxDataContent.TabIndex = 15;
@@ -526,7 +526,7 @@
             // textBoxModuleNameData
             // 
             this.textBoxModuleNameData.Location = new System.Drawing.Point(140, 50);
-            this.textBoxModuleNameData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxModuleNameData.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxModuleNameData.Name = "textBoxModuleNameData";
             this.textBoxModuleNameData.Size = new System.Drawing.Size(132, 22);
             this.textBoxModuleNameData.TabIndex = 13;
@@ -545,7 +545,7 @@
             // textBoxApplicationNameData
             // 
             this.textBoxApplicationNameData.Location = new System.Drawing.Point(140, 14);
-            this.textBoxApplicationNameData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxApplicationNameData.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxApplicationNameData.Name = "textBoxApplicationNameData";
             this.textBoxApplicationNameData.Size = new System.Drawing.Size(132, 22);
             this.textBoxApplicationNameData.TabIndex = 11;
@@ -577,7 +577,7 @@
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Location = new System.Drawing.Point(4, 25);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(1040, 479);
             this.tabPage4.TabIndex = 3;
@@ -587,7 +587,7 @@
             // buttonPOSTSubscription
             // 
             this.buttonPOSTSubscription.Location = new System.Drawing.Point(184, 219);
-            this.buttonPOSTSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonPOSTSubscription.Margin = new System.Windows.Forms.Padding(4);
             this.buttonPOSTSubscription.Name = "buttonPOSTSubscription";
             this.buttonPOSTSubscription.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTSubscription.TabIndex = 29;
@@ -598,7 +598,7 @@
             // textBoxEndPoint
             // 
             this.textBoxEndPoint.Location = new System.Drawing.Point(164, 170);
-            this.textBoxEndPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxEndPoint.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxEndPoint.Name = "textBoxEndPoint";
             this.textBoxEndPoint.Size = new System.Drawing.Size(160, 22);
             this.textBoxEndPoint.TabIndex = 28;
@@ -622,7 +622,7 @@
             "deletion",
             "creation and deletion"});
             this.comboBoxSubscriptionEvents.Location = new System.Drawing.Point(164, 137);
-            this.comboBoxSubscriptionEvents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.comboBoxSubscriptionEvents.Margin = new System.Windows.Forms.Padding(4);
             this.comboBoxSubscriptionEvents.Name = "comboBoxSubscriptionEvents";
             this.comboBoxSubscriptionEvents.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSubscriptionEvents.TabIndex = 24;
@@ -641,7 +641,7 @@
             // textBoxSubscriptionNamePOST
             // 
             this.textBoxSubscriptionNamePOST.Location = new System.Drawing.Point(164, 100);
-            this.textBoxSubscriptionNamePOST.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxSubscriptionNamePOST.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxSubscriptionNamePOST.Name = "textBoxSubscriptionNamePOST";
             this.textBoxSubscriptionNamePOST.Size = new System.Drawing.Size(160, 22);
             this.textBoxSubscriptionNamePOST.TabIndex = 22;
@@ -660,17 +660,18 @@
             // buttonDELSubscription
             // 
             this.buttonDELSubscription.Location = new System.Drawing.Point(11, 219);
-            this.buttonDELSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonDELSubscription.Margin = new System.Windows.Forms.Padding(4);
             this.buttonDELSubscription.Name = "buttonDELSubscription";
             this.buttonDELSubscription.Size = new System.Drawing.Size(165, 27);
             this.buttonDELSubscription.TabIndex = 20;
             this.buttonDELSubscription.Text = "DEL (Delete)";
             this.buttonDELSubscription.UseVisualStyleBackColor = true;
+            this.buttonDELSubscription.Click += new System.EventHandler(this.buttonDELSubscription_Click_1);
             // 
             // textBoxModuleNameSubscription
             // 
             this.textBoxModuleNameSubscription.Location = new System.Drawing.Point(164, 47);
-            this.textBoxModuleNameSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxModuleNameSubscription.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxModuleNameSubscription.Name = "textBoxModuleNameSubscription";
             this.textBoxModuleNameSubscription.Size = new System.Drawing.Size(160, 22);
             this.textBoxModuleNameSubscription.TabIndex = 15;
@@ -678,7 +679,7 @@
             // textBoxApplicationNameSubscription
             // 
             this.textBoxApplicationNameSubscription.Location = new System.Drawing.Point(164, 15);
-            this.textBoxApplicationNameSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxApplicationNameSubscription.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxApplicationNameSubscription.Name = "textBoxApplicationNameSubscription";
             this.textBoxApplicationNameSubscription.Size = new System.Drawing.Size(160, 22);
             this.textBoxApplicationNameSubscription.TabIndex = 14;
@@ -711,7 +712,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1056, 516);
             this.Controls.Add(this.tabControl1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
