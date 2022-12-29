@@ -1,6 +1,6 @@
 ﻿namespace RemoteLights
 {
-    partial class Form1
+    partial class Remote
     {
         /// <summary>
         /// Required designer variable.
@@ -34,9 +34,10 @@
             // 
             // buttonON
             // 
-            this.buttonON.Location = new System.Drawing.Point(240, 111);
+            this.buttonON.Location = new System.Drawing.Point(11, 11);
+            this.buttonON.Margin = new System.Windows.Forms.Padding(2);
             this.buttonON.Name = "buttonON";
-            this.buttonON.Size = new System.Drawing.Size(75, 23);
+            this.buttonON.Size = new System.Drawing.Size(103, 66);
             this.buttonON.TabIndex = 0;
             this.buttonON.Text = "ON";
             this.buttonON.UseVisualStyleBackColor = true;
@@ -44,24 +45,26 @@
             // 
             // buttonOFF
             // 
-            this.buttonOFF.Location = new System.Drawing.Point(359, 111);
+            this.buttonOFF.Location = new System.Drawing.Point(11, 81);
+            this.buttonOFF.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOFF.Name = "buttonOFF";
-            this.buttonOFF.Size = new System.Drawing.Size(75, 23);
+            this.buttonOFF.Size = new System.Drawing.Size(103, 66);
             this.buttonOFF.TabIndex = 1;
             this.buttonOFF.Text = "OFF";
             this.buttonOFF.UseVisualStyleBackColor = true;
             this.buttonOFF.Click += new System.EventHandler(this.buttonOFF_Click);
             // 
-            // Form1
+            // Remote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(125, 158);
             this.Controls.Add(this.buttonOFF);
             this.Controls.Add(this.buttonON);
-            this.Name = "Form1";
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Remote";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.Remote_Load);
             this.ResumeLayout(false);
 
         }
