@@ -51,7 +51,7 @@ namespace RemoteLights
 
 
                 RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+                //MessageBox.Show(response.StatusCode.ToString());
 
                 mcClient.Publish(module_to_send, Encoding.UTF8.GetBytes(data.Content));
                /* if (mcClient.IsConnected)
@@ -86,7 +86,7 @@ namespace RemoteLights
 
 
                 RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+               // MessageBox.Show(response.StatusCode.ToString());
 
 
 
@@ -115,7 +115,7 @@ namespace RemoteLights
                 Console.WriteLine("Error connecting to message broker...");
                 return;
             }
-            MessageBox.Show("Connected!");
+           // MessageBox.Show("Connected!");
         }
     }
 }

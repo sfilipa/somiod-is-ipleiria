@@ -26,11 +26,10 @@ public class SubscriptionHandler
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
-            //comentou-se porque senão tava a dar sempre BadRequest na app LightA ao fazer start 
-            /* if (FindObjectInDatabase(application_name, module_name, newSubscriptionName) != null)
+            if (FindObjectInDatabase(application_name, module_name, newSubscriptionName) != null)
              {
                  throw new Exception("There are already exists a subscription named " + newSubscriptionName + " in the module "+module_name+" from application " + application_name);
-             }*/
+             }
 
             // Set up the command to insert the object into the database
             string insertCommand = "INSERT INTO Subscriptions VALUES (@name, @date, @parent, @event, @endpoint)";

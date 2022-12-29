@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLights", "RemoteLight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightA", "LightA\LightA.csproj", "{0A7F1300-4850-4000-9542-9435BC1D5740}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LightB", "LightB\LightB.csproj", "{45F46DD2-49E9-4F33-A4F2-5942F2FF78C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{0A7F1300-4850-4000-9542-9435BC1D5740}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A7F1300-4850-4000-9542-9435BC1D5740}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A7F1300-4850-4000-9542-9435BC1D5740}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45F46DD2-49E9-4F33-A4F2-5942F2FF78C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45F46DD2-49E9-4F33-A4F2-5942F2FF78C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45F46DD2-49E9-4F33-A4F2-5942F2FF78C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45F46DD2-49E9-4F33-A4F2-5942F2FF78C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

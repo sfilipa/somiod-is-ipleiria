@@ -16,7 +16,7 @@ namespace LightA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LightbulbA());
+            Application.Run(new LightA());
         }
     }
 }

@@ -85,16 +85,11 @@
             this.textBoxApplicationNameSubscription = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.buttonLigarDesligar = new System.Windows.Forms.Button();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
-            this.tabPage5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonGetAllApplications
@@ -198,7 +193,6 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(2, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -677,35 +671,6 @@
             this.label12.Text = "Application Name:";
             this.label12.UseMnemonic = false;
             // 
-            // tabPage5
-            // 
-            this.tabPage5.Controls.Add(this.buttonLigarDesligar);
-            this.tabPage5.Controls.Add(this.pictureBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
-            this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(778, 387);
-            this.tabPage5.TabIndex = 4;
-            this.tabPage5.Text = "Test";
-            this.tabPage5.UseVisualStyleBackColor = true;
-            // 
-            // buttonLigarDesligar
-            // 
-            this.buttonLigarDesligar.Location = new System.Drawing.Point(316, 60);
-            this.buttonLigarDesligar.Name = "buttonLigarDesligar";
-            this.buttonLigarDesligar.Size = new System.Drawing.Size(75, 23);
-            this.buttonLigarDesligar.TabIndex = 1;
-            this.buttonLigarDesligar.Text = "Ligar";
-            this.buttonLigarDesligar.UseVisualStyleBackColor = true;
-            this.buttonLigarDesligar.Click += new System.EventHandler(this.buttonLigarDesligar_Click);
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(261, 104);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(185, 180);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,8 +688,6 @@
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
-            this.tabPage5.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -788,9 +751,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RichTextBox richTextBoxListModules;
         private System.Windows.Forms.RichTextBox richTextBoxListApplications;
-        private System.Windows.Forms.TabPage tabPage5;
-        private System.Windows.Forms.PictureBox pictureBox;
-        private System.Windows.Forms.Button buttonLigarDesligar;
     }
 }
 
