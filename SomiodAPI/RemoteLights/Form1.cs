@@ -11,6 +11,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
 using RestSharp;
+using System.Net.Http;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace RemoteLights
 {
@@ -18,14 +22,9 @@ namespace RemoteLights
     {
         MqttClient mcClient = null;
         String domain = "127.0.0.1";
-        String application = "lighting";
-        String my_module = "lightcommand";
-        string module_to_send = "lightbulb";
-        string res_type = "subscription";
-        string event_type = "creation and deletion";
-        string endpoint = "mqtt://localhost:1883";
         string baseURI = @"http://localhost:53204";
         RestClient client = null;
+
         
         public Remote()
         {
@@ -43,23 +42,29 @@ namespace RemoteLights
                     Res_type = "data"
                 };
 
+                if (comboBoxApplications.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select an application first");
+                    return;
+                }
 
-                var request = new RestRequest("/api/somiod/" + application + "/" + module_to_send, Method.Post);
+                if (comboBoxModules.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a module first");
+                    return;
+                }
+
+                string application = comboBoxApplications.SelectedItem.ToString();
+                string module = comboBoxModules.SelectedItem.ToString();
+
+                var request = new RestRequest("/api/somiod/" + application + "/" + module, Method.Post);
 
                 // Adds the message body to the response
                 request.AddJsonBody(data);
 
-
                 RestResponse response = client.Execute(request);
-                //MessageBox.Show(response.StatusCode.ToString());
 
-                mcClient.Publish(module_to_send, Encoding.UTF8.GetBytes(data.Content));
-               /* if (mcClient.IsConnected)
-                {
-                    mcClient.Unsubscribe(new string[] { "lightbulb" }); //Put this in a button to see notify!
-                    mcClient.Disconnect(); //Free process and process's resources
-                }*/
-
+                mcClient.Publish(module, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
@@ -78,24 +83,28 @@ namespace RemoteLights
                     Res_type = "data"
                 };
 
+                if (comboBoxApplications.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select an application first");
+                    return;
+                }
 
-                var request = new RestRequest("/api/somiod/" + application + "/" + module_to_send, Method.Post);
+                if (comboBoxModules.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a module first");
+                    return;
+                }
+
+                string application = comboBoxApplications.SelectedItem.ToString();
+                string module = comboBoxModules.SelectedItem.ToString();
+                var request = new RestRequest("/api/somiod/" + application + "/" + module, Method.Post);
 
                 // Adds the message body to the response
                 request.AddJsonBody(data);
 
-
                 RestResponse response = client.Execute(request);
-               // MessageBox.Show(response.StatusCode.ToString());
 
-
-
-                mcClient.Publish(module_to_send, Encoding.UTF8.GetBytes(data.Content));
-               /* if (mcClient.IsConnected)
-                {
-                    mcClient.Unsubscribe(new string[] { "lightbulb" }); //Put this in a button to see notify!
-                    mcClient.Disconnect(); //Free process and process's resources
-                }*/
+                mcClient.Publish(module, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
@@ -103,9 +112,11 @@ namespace RemoteLights
             }
         }
         
-        private void Remote_Load(object sender, EventArgs e)
+        private async void Remote_Load(object sender, EventArgs e)
         {
             client = new RestClient(baseURI);
+
+            loadApplicationsIntoComboBox();
 
             mcClient = new MqttClient(IPAddress.Parse(domain));
 
@@ -115,7 +126,54 @@ namespace RemoteLights
                 Console.WriteLine("Error connecting to message broker...");
                 return;
             }
-           // MessageBox.Show("Connected!");
+        }
+
+        private void loadApplicationsIntoComboBox()
+        {
+            comboBoxApplications.Items.Clear();
+            var request = new RestRequest("/api/somiod/", Method.Get);
+            RestResponse response = client.Execute(request);
+            string xmlResponseString = response.Content;
+
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlNamespaceManager ns = new XmlNamespaceManager(xmlDoc.NameTable);
+            ns.AddNamespace("arr", "http://schemas.datacontract.org/2004/07/SomiodWebApplication.Models");
+            xmlDoc.LoadXml(xmlResponseString);
+
+            XmlNodeList list = xmlDoc.SelectNodes("//arr:Application/arr:Name", ns);
+            foreach (XmlNode item in list)
+            {
+                comboBoxApplications.Items.Add(item.InnerText);
+            }
+            comboBoxApplications.SelectedIndexChanged += new EventHandler(comboBoxChanged);
+        }
+
+        private void comboBoxChanged(object sender, EventArgs e)
+        {
+            comboBoxModules.Items.Clear();
+            var request = new RestRequest("/api/somiod/"+ comboBoxApplications.SelectedItem.ToString() + "/modules", Method.Get);
+            RestResponse response = client.Execute(request);
+            string xmlResponseString = response.Content;
+            XmlDocument xmlDoc = new XmlDocument();
+            
+            XmlNamespaceManager ns = new XmlNamespaceManager(xmlDoc.NameTable);
+            ns.AddNamespace("arrm", "http://schemas.datacontract.org/2004/07/SomiodWebApplication.Models");
+            xmlDoc.LoadXml(xmlResponseString);
+
+            XmlNodeList list = xmlDoc.SelectNodes("//arrm:Module/arrm:Name", ns);
+            foreach (XmlNode item in list)
+            {
+                comboBoxModules.Items.Add(item.InnerText);
+            }
+
+            comboBoxModules.Enabled = !(list.Count == 0);
+        }
+
+        private void button1_Click(object sender, EventArgs e) //Refresh applications and modules
+        {
+            comboBoxApplications.ResetText();
+            comboBoxModules.ResetText();
+            loadApplicationsIntoComboBox();
         }
     }
 }

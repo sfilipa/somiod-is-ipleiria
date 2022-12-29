@@ -88,7 +88,7 @@ namespace LightA
                 createApplication(applicationName);
                 createModule(moduleName, applicationName);
                 createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
-                connectToMosquitto(subscriptionName);
+                connectToMosquitto(moduleName);
                 MessageBox.Show("Created and Connected to Server Successfully");
             }
             catch
@@ -97,7 +97,7 @@ namespace LightA
             }
         }
 
-        private void connectToMosquitto(string subscriptionName)
+        private void connectToMosquitto(string moduleName)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace LightA
                 mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }; //QoS – depends on the topics number
                                                                                                                // mClient.Subscribe(module, qosLevels)
-                mClient.Subscribe(new string[] { subscriptionName }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                mClient.Subscribe(new string[] { moduleName }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             }
             catch (Exception)
             {
@@ -185,6 +185,21 @@ namespace LightA
             {
                 throw new Exception("Could not create subscription");
             }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
