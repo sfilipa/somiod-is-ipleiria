@@ -91,9 +91,6 @@
   <ItemGroup>
     <Content Include="App_Data\dboStrutucture.sql" />
     <Content Include="App_Data\DBSomiod.mdf" />
-    <Content Include="App_Data\DBSomiod_log.ldf">
-      <DependentUpon>DBSomiod.mdf</DependentUpon>
-    </Content>
     <Content Include="App_Data\dropTables.sql" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />

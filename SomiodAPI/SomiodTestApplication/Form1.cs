@@ -354,7 +354,10 @@ namespace SomiodTestApplication
             }
 
         }
+        //--------------------- END OF DATA ---------------------
 
+
+        //--------------------- SUBSCRIPTION ---------------------
         private void buttonLigarDesligar_Click(object sender, EventArgs e)
         {
 
@@ -362,19 +365,82 @@ namespace SomiodTestApplication
 
         private void buttonPOSTSubscription_Click(object sender, EventArgs e)
         {
+            string applicationName = textBoxApplicationNameSubscription.Text;
+            if (applicationName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
 
+            string moduleName = textBoxModuleNameSubscription.Text;
+            if (moduleName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the new module name");
+                return;
+            }
+
+            string subscriptionName = textBoxSubscriptionNamePOST.Text;
+            if (subscriptionName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the new subscription name");
+                return;
+            }
+
+            string eventName = comboBoxSubscriptionEvents.SelectedItem.ToString();
+            if (!eventName.Equals("creation") && !eventName.Equals("deletion") && !eventName.Equals("creation and deletion"))
+            {
+                MessageBox.Show("Event should be 'creation', 'deletion' or 'creation and deletion'");
+                return;
+            }
+
+            string endpoint = textBoxEndPoint.Text;
+
+            // Makes the Put Request
+            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName;
+            try
+            {
+                RequestsHandler.createSubscription(requestURI, client, applicationName, moduleName, subscriptionName, eventName, endpoint);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
-        private void comboBoxSubscriptionEvents_SelectedIndexChanged(object sender, EventArgs e)
+        private void buttonDELSubscription_Click_1(object sender, EventArgs e)
         {
+            // Verifies if Application Name Input is Empty
+            string applicationName = textBoxApplicationNameSubscription.Text;
+            if (applicationName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the application name");
+                return;
+            }
 
+            string moduleName = textBoxModuleNameSubscription.Text;
+            if (moduleName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the new module name");
+                return;
+            }
+
+            string subscriptionName = textBoxSubscriptionNamePOST.Text;
+            if (subscriptionName.Trim().Length == 0)
+            {
+                MessageBox.Show("Please enter the subscription name");
+                return;
+            }
+
+            string requestURI = "/api/somiod/" + applicationName + "/" + moduleName + "/subscription" + "/" + subscriptionName;
+            try
+            {
+                RequestsHandler.delete(requestURI, client);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-
-        //--------------------- END OF DATA ---------------------
-
-
-        //--------------------- SUBSCRIPTION ---------------------
-
         //--------------------- END OF SUBSCRIPTION ---------------------
     }
 }
