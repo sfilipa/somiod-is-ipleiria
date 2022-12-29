@@ -187,7 +187,8 @@ namespace SomiodTestApplication
                 var request = new RestRequest("/api/somiod/" + applicationName + "/" + moduleName, Method.Post);
 
                 // Adds the message body to the response
-                request.AddObject(data);
+                request.AddJsonBody(data);
+           
 
                 RestResponse response = client.Execute(request);
                 MessageBox.Show(response.StatusCode.ToString());

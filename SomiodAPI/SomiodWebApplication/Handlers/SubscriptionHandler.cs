@@ -120,9 +120,9 @@ public class SubscriptionHandler
 
 
             // Set up the command to search for the object by name
-            string searchCommand = "SELECT * FROM Subscriptions WHERE Id = @Id and Parent = @Parent";
+            string searchCommand = "SELECT * FROM Subscriptions WHERE Name = @Name and Parent = @Parent";
             SqlCommand command = new SqlCommand(searchCommand, connection);
-            command.Parameters.AddWithValue("@Id", subscription_name);
+            command.Parameters.AddWithValue("@Name", subscription_name);
             command.Parameters.AddWithValue("@Parent", module.Id);
 
             try

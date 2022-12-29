@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomiodWebApplication", "Som
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SomiodTestApplication", "SomiodTestApplication\SomiodTestApplication.csproj", "{0672BE51-4510-4722-9053-F5AC0577DCD8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteLights", "RemoteLights\RemoteLights.csproj", "{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0672BE51-4510-4722-9053-F5AC0577DCD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0672BE51-4510-4722-9053-F5AC0577DCD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0672BE51-4510-4722-9053-F5AC0577DCD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
