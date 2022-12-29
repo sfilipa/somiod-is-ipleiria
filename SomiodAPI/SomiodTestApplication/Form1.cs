@@ -365,6 +365,11 @@ namespace SomiodTestApplication
 
         }
 
+        private void comboBoxSubscriptionEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         //--------------------- END OF DATA ---------------------
 
 

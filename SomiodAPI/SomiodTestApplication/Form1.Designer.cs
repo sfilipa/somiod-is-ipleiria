@@ -600,6 +600,7 @@
             this.comboBoxSubscriptionEvents.Name = "comboBoxSubscriptionEvents";
             this.comboBoxSubscriptionEvents.Size = new System.Drawing.Size(121, 21);
             this.comboBoxSubscriptionEvents.TabIndex = 24;
+            this.comboBoxSubscriptionEvents.SelectedIndexChanged += new System.EventHandler(this.comboBoxSubscriptionEvents_SelectedIndexChanged);
             // 
             // label15
             // 

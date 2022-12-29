@@ -115,6 +115,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SomiodTestApplication\SomiodTestApplication.csproj">
+      <Project>{0672be51-4510-4722-9053-f5ac0577dcd8}</Project>
+      <Name>SomiodTestApplication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SomiodWebApplication\SomiodWebApplication.csproj">
       <Project>{d609468a-c239-4f5b-a8be-745483f13a76}</Project>
       <Name>SomiodWebApplication</Name>
