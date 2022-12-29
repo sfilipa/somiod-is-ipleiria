@@ -408,6 +408,7 @@ namespace SomiodTestApplication
             }
         }
 
+<<<<<<< HEAD
         private void buttonDELSubscription_Click(object sender, EventArgs e)
         {
             // Verifies if Application Name Input is Empty
@@ -417,6 +418,14 @@ namespace SomiodTestApplication
                 MessageBox.Show("Please enter the application name");
                 return;
             }
+=======
+        private void comboBoxSubscriptionEvents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        //--------------------- END OF DATA ---------------------
+>>>>>>> 993b6b67fea25058567e76ce900edf33e25b374b
 
             string moduleName = textBoxModuleNameData.Text;
             if (moduleName.Trim().Length == 0)
