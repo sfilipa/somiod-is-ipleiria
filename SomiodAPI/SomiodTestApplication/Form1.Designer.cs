@@ -74,8 +74,6 @@
             this.buttonPOSTSubscription = new System.Windows.Forms.Button();
             this.textBoxEndPoint = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBoxSubscriptionNameDEL = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.comboBoxSubscriptionEvents = new System.Windows.Forms.ComboBox();
             this.label15 = new System.Windows.Forms.Label();
             this.textBoxSubscriptionNamePOST = new System.Windows.Forms.TextBox();
@@ -94,9 +92,10 @@
             // 
             // buttonGetAllApplications
             // 
-            this.buttonGetAllApplications.Location = new System.Drawing.Point(6, 23);
+            this.buttonGetAllApplications.Location = new System.Drawing.Point(8, 28);
+            this.buttonGetAllApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGetAllApplications.Name = "buttonGetAllApplications";
-            this.buttonGetAllApplications.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetAllApplications.Size = new System.Drawing.Size(165, 27);
             this.buttonGetAllApplications.TabIndex = 0;
             this.buttonGetAllApplications.Text = "Get All Applications";
             this.buttonGetAllApplications.UseVisualStyleBackColor = true;
@@ -104,9 +103,10 @@
             // 
             // buttonGetApplication
             // 
-            this.buttonGetApplication.Location = new System.Drawing.Point(6, 231);
+            this.buttonGetApplication.Location = new System.Drawing.Point(8, 284);
+            this.buttonGetApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGetApplication.Name = "buttonGetApplication";
-            this.buttonGetApplication.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonGetApplication.TabIndex = 2;
             this.buttonGetApplication.Text = "Get Application";
             this.buttonGetApplication.UseVisualStyleBackColor = true;
@@ -115,25 +115,28 @@
             // richTextBoxApplication
             // 
             this.richTextBoxApplication.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxApplication.Location = new System.Drawing.Point(7, 259);
+            this.richTextBoxApplication.Location = new System.Drawing.Point(9, 319);
+            this.richTextBoxApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxApplication.Name = "richTextBoxApplication";
-            this.richTextBoxApplication.Size = new System.Drawing.Size(388, 65);
+            this.richTextBoxApplication.Size = new System.Drawing.Size(516, 79);
             this.richTextBoxApplication.TabIndex = 3;
             this.richTextBoxApplication.Text = "";
             // 
             // textBoxGetApplicationByName
             // 
-            this.textBoxGetApplicationByName.Location = new System.Drawing.Point(208, 233);
+            this.textBoxGetApplicationByName.Location = new System.Drawing.Point(277, 287);
+            this.textBoxGetApplicationByName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxGetApplicationByName.Name = "textBoxGetApplicationByName";
-            this.textBoxGetApplicationByName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxGetApplicationByName.Size = new System.Drawing.Size(132, 22);
             this.textBoxGetApplicationByName.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(164, 236);
+            this.label1.Location = new System.Drawing.Point(219, 290);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(47, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Name:";
             this.label1.UseMnemonic = false;
@@ -142,26 +145,29 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(475, 51);
+            this.label2.Location = new System.Drawing.Point(633, 63);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(38, 13);
+            this.label2.Size = new System.Drawing.Size(47, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Name:";
             this.label2.UseMnemonic = false;
             // 
             // textBoxApplicationName
             // 
-            this.textBoxApplicationName.Location = new System.Drawing.Point(544, 48);
+            this.textBoxApplicationName.Location = new System.Drawing.Point(725, 59);
+            this.textBoxApplicationName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxApplicationName.Name = "textBoxApplicationName";
-            this.textBoxApplicationName.Size = new System.Drawing.Size(124, 20);
+            this.textBoxApplicationName.Size = new System.Drawing.Size(164, 22);
             this.textBoxApplicationName.TabIndex = 7;
             this.textBoxApplicationName.TextChanged += new System.EventHandler(this.textBoxApplicationName_TextChanged);
             // 
             // buttonPOSTApplication
             // 
-            this.buttonPOSTApplication.Location = new System.Drawing.Point(544, 120);
+            this.buttonPOSTApplication.Location = new System.Drawing.Point(725, 148);
+            this.buttonPOSTApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPOSTApplication.Name = "buttonPOSTApplication";
-            this.buttonPOSTApplication.Size = new System.Drawing.Size(124, 22);
+            this.buttonPOSTApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTApplication.TabIndex = 8;
             this.buttonPOSTApplication.Text = "POST (Create)";
             this.buttonPOSTApplication.UseVisualStyleBackColor = true;
@@ -169,9 +175,10 @@
             // 
             // buttonDELApplication
             // 
-            this.buttonDELApplication.Location = new System.Drawing.Point(544, 176);
+            this.buttonDELApplication.Location = new System.Drawing.Point(725, 217);
+            this.buttonDELApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDELApplication.Name = "buttonDELApplication";
-            this.buttonDELApplication.Size = new System.Drawing.Size(124, 22);
+            this.buttonDELApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonDELApplication.TabIndex = 9;
             this.buttonDELApplication.Text = "DEL (Delete)";
             this.buttonDELApplication.UseVisualStyleBackColor = true;
@@ -179,9 +186,10 @@
             // 
             // buttonPUTApplication
             // 
-            this.buttonPUTApplication.Location = new System.Drawing.Point(544, 148);
+            this.buttonPUTApplication.Location = new System.Drawing.Point(725, 182);
+            this.buttonPUTApplication.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPUTApplication.Name = "buttonPUTApplication";
-            this.buttonPUTApplication.Size = new System.Drawing.Size(124, 22);
+            this.buttonPUTApplication.Size = new System.Drawing.Size(165, 27);
             this.buttonPUTApplication.TabIndex = 10;
             this.buttonPUTApplication.Text = "PUT (Update)";
             this.buttonPUTApplication.UseVisualStyleBackColor = true;
@@ -193,10 +201,11 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(2, 3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(786, 413);
+            this.tabControl1.Size = new System.Drawing.Size(1048, 508);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -214,10 +223,11 @@
             this.tabPage1.Controls.Add(this.buttonGetApplication);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.textBoxGetApplicationByName);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 25);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(778, 387);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage1.Size = new System.Drawing.Size(1040, 479);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Application";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -225,27 +235,30 @@
             // richTextBoxListApplications
             // 
             this.richTextBoxListApplications.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxListApplications.Location = new System.Drawing.Point(7, 48);
+            this.richTextBoxListApplications.Location = new System.Drawing.Point(9, 59);
+            this.richTextBoxListApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxListApplications.Name = "richTextBoxListApplications";
-            this.richTextBoxListApplications.Size = new System.Drawing.Size(388, 179);
+            this.richTextBoxListApplications.Size = new System.Drawing.Size(516, 219);
             this.richTextBoxListApplications.TabIndex = 13;
             this.richTextBoxListApplications.Text = "";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(475, 77);
+            this.label3.Location = new System.Drawing.Point(633, 95);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 13);
+            this.label3.Size = new System.Drawing.Size(77, 16);
             this.label3.TabIndex = 12;
             this.label3.Text = "New Name:";
             this.label3.UseMnemonic = false;
             // 
             // textBoxApplicationNewName
             // 
-            this.textBoxApplicationNewName.Location = new System.Drawing.Point(544, 74);
+            this.textBoxApplicationNewName.Location = new System.Drawing.Point(725, 91);
+            this.textBoxApplicationNewName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxApplicationNewName.Name = "textBoxApplicationNewName";
-            this.textBoxApplicationNewName.Size = new System.Drawing.Size(124, 20);
+            this.textBoxApplicationNewName.Size = new System.Drawing.Size(164, 22);
             this.textBoxApplicationNewName.TabIndex = 11;
             // 
             // tabPage2
@@ -265,10 +278,11 @@
             this.tabPage2.Controls.Add(this.richTextBoxSpecificModule);
             this.tabPage2.Controls.Add(this.buttonGetModule);
             this.tabPage2.Controls.Add(this.buttonGetAllModules);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(778, 387);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tabPage2.Size = new System.Drawing.Size(1040, 479);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Module";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -276,17 +290,19 @@
             // richTextBoxListModules
             // 
             this.richTextBoxListModules.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxListModules.Location = new System.Drawing.Point(9, 83);
+            this.richTextBoxListModules.Location = new System.Drawing.Point(12, 102);
+            this.richTextBoxListModules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxListModules.Name = "richTextBoxListModules";
-            this.richTextBoxListModules.Size = new System.Drawing.Size(388, 144);
+            this.richTextBoxListModules.Size = new System.Drawing.Size(516, 176);
             this.richTextBoxListModules.TabIndex = 17;
             this.richTextBoxListModules.Text = "";
             // 
             // buttonDELModule
             // 
-            this.buttonDELModule.Location = new System.Drawing.Point(657, 129);
+            this.buttonDELModule.Location = new System.Drawing.Point(876, 159);
+            this.buttonDELModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDELModule.Name = "buttonDELModule";
-            this.buttonDELModule.Size = new System.Drawing.Size(109, 22);
+            this.buttonDELModule.Size = new System.Drawing.Size(145, 27);
             this.buttonDELModule.TabIndex = 16;
             this.buttonDELModule.Text = "DEL (Delete)";
             this.buttonDELModule.UseVisualStyleBackColor = true;
@@ -294,9 +310,10 @@
             // 
             // buttonPUTModule
             // 
-            this.buttonPUTModule.Location = new System.Drawing.Point(657, 172);
+            this.buttonPUTModule.Location = new System.Drawing.Point(876, 212);
+            this.buttonPUTModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPUTModule.Name = "buttonPUTModule";
-            this.buttonPUTModule.Size = new System.Drawing.Size(109, 22);
+            this.buttonPUTModule.Size = new System.Drawing.Size(145, 27);
             this.buttonPUTModule.TabIndex = 15;
             this.buttonPUTModule.Text = "PUT (Update)";
             this.buttonPUTModule.UseVisualStyleBackColor = true;
@@ -304,9 +321,10 @@
             // 
             // buttonPOSTModule
             // 
-            this.buttonPOSTModule.Location = new System.Drawing.Point(657, 101);
+            this.buttonPOSTModule.Location = new System.Drawing.Point(876, 124);
+            this.buttonPOSTModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPOSTModule.Name = "buttonPOSTModule";
-            this.buttonPOSTModule.Size = new System.Drawing.Size(109, 22);
+            this.buttonPOSTModule.Size = new System.Drawing.Size(145, 27);
             this.buttonPOSTModule.TabIndex = 14;
             this.buttonPOSTModule.Text = "POST (Create)";
             this.buttonPOSTModule.UseVisualStyleBackColor = true;
@@ -314,17 +332,19 @@
             // 
             // textBoxModuleNewName
             // 
-            this.textBoxModuleNewName.Location = new System.Drawing.Point(526, 174);
+            this.textBoxModuleNewName.Location = new System.Drawing.Point(701, 214);
+            this.textBoxModuleNewName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxModuleNewName.Name = "textBoxModuleNewName";
-            this.textBoxModuleNewName.Size = new System.Drawing.Size(110, 20);
+            this.textBoxModuleNewName.Size = new System.Drawing.Size(145, 22);
             this.textBoxModuleNewName.TabIndex = 13;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(419, 177);
+            this.label7.Location = new System.Drawing.Point(559, 218);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(101, 13);
+            this.label7.Size = new System.Drawing.Size(125, 16);
             this.label7.TabIndex = 12;
             this.label7.Text = "New Module Name:";
             this.label7.UseMnemonic = false;
@@ -332,17 +352,19 @@
             // 
             // textBoxModuleName
             // 
-            this.textBoxModuleName.Location = new System.Drawing.Point(526, 101);
+            this.textBoxModuleName.Location = new System.Drawing.Point(701, 124);
+            this.textBoxModuleName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxModuleName.Name = "textBoxModuleName";
-            this.textBoxModuleName.Size = new System.Drawing.Size(110, 20);
+            this.textBoxModuleName.Size = new System.Drawing.Size(145, 22);
             this.textBoxModuleName.TabIndex = 11;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 104);
+            this.label5.Location = new System.Drawing.Point(559, 128);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 13);
+            this.label5.Size = new System.Drawing.Size(95, 16);
             this.label5.TabIndex = 10;
             this.label5.Text = "Module Name:";
             this.label5.UseMnemonic = false;
@@ -350,9 +372,10 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 15);
+            this.label6.Location = new System.Drawing.Point(8, 18);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(93, 13);
+            this.label6.Size = new System.Drawing.Size(117, 16);
             this.label6.TabIndex = 9;
             this.label6.Text = "Application Name:";
             this.label6.UseMnemonic = false;
@@ -360,43 +383,48 @@
             // 
             // textBoxApplicationNameModule
             // 
-            this.textBoxApplicationNameModule.Location = new System.Drawing.Point(105, 12);
+            this.textBoxApplicationNameModule.Location = new System.Drawing.Point(140, 15);
+            this.textBoxApplicationNameModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxApplicationNameModule.Name = "textBoxApplicationNameModule";
-            this.textBoxApplicationNameModule.Size = new System.Drawing.Size(100, 20);
+            this.textBoxApplicationNameModule.Size = new System.Drawing.Size(132, 22);
             this.textBoxApplicationNameModule.TabIndex = 8;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(136, 263);
+            this.label4.Location = new System.Drawing.Point(181, 324);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(76, 13);
+            this.label4.Size = new System.Drawing.Size(95, 16);
             this.label4.TabIndex = 6;
             this.label4.Text = "Module Name:";
             this.label4.UseMnemonic = false;
             // 
             // textBoxGetModuleName
             // 
-            this.textBoxGetModuleName.Location = new System.Drawing.Point(218, 260);
+            this.textBoxGetModuleName.Location = new System.Drawing.Point(291, 320);
+            this.textBoxGetModuleName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxGetModuleName.Name = "textBoxGetModuleName";
-            this.textBoxGetModuleName.Size = new System.Drawing.Size(100, 20);
+            this.textBoxGetModuleName.Size = new System.Drawing.Size(132, 22);
             this.textBoxGetModuleName.TabIndex = 5;
             this.textBoxGetModuleName.TextChanged += new System.EventHandler(this.textBoxGetModuleName_TextChanged);
             // 
             // richTextBoxSpecificModule
             // 
             this.richTextBoxSpecificModule.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxSpecificModule.Location = new System.Drawing.Point(6, 286);
+            this.richTextBoxSpecificModule.Location = new System.Drawing.Point(8, 352);
+            this.richTextBoxSpecificModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxSpecificModule.Name = "richTextBoxSpecificModule";
-            this.richTextBoxSpecificModule.Size = new System.Drawing.Size(391, 84);
+            this.richTextBoxSpecificModule.Size = new System.Drawing.Size(520, 102);
             this.richTextBoxSpecificModule.TabIndex = 4;
             this.richTextBoxSpecificModule.Text = "";
             // 
             // buttonGetModule
             // 
-            this.buttonGetModule.Location = new System.Drawing.Point(6, 258);
+            this.buttonGetModule.Location = new System.Drawing.Point(8, 318);
+            this.buttonGetModule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGetModule.Name = "buttonGetModule";
-            this.buttonGetModule.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetModule.Size = new System.Drawing.Size(165, 27);
             this.buttonGetModule.TabIndex = 3;
             this.buttonGetModule.Text = "Get Module";
             this.buttonGetModule.UseVisualStyleBackColor = true;
@@ -404,9 +432,10 @@
             // 
             // buttonGetAllModules
             // 
-            this.buttonGetAllModules.Location = new System.Drawing.Point(6, 55);
+            this.buttonGetAllModules.Location = new System.Drawing.Point(8, 68);
+            this.buttonGetAllModules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonGetAllModules.Name = "buttonGetAllModules";
-            this.buttonGetAllModules.Size = new System.Drawing.Size(124, 22);
+            this.buttonGetAllModules.Size = new System.Drawing.Size(165, 27);
             this.buttonGetAllModules.TabIndex = 1;
             this.buttonGetAllModules.Text = "Get All Modules";
             this.buttonGetAllModules.UseVisualStyleBackColor = true;
@@ -424,18 +453,20 @@
             this.tabPage3.Controls.Add(this.label9);
             this.tabPage3.Controls.Add(this.textBoxApplicationNameData);
             this.tabPage3.Controls.Add(this.label8);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 25);
+            this.tabPage3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(778, 387);
+            this.tabPage3.Size = new System.Drawing.Size(1040, 479);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Data";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // buttonDELData
             // 
-            this.buttonDELData.Location = new System.Drawing.Point(510, 11);
+            this.buttonDELData.Location = new System.Drawing.Point(680, 14);
+            this.buttonDELData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDELData.Name = "buttonDELData";
-            this.buttonDELData.Size = new System.Drawing.Size(124, 22);
+            this.buttonDELData.Size = new System.Drawing.Size(165, 27);
             this.buttonDELData.TabIndex = 19;
             this.buttonDELData.Text = "DEL (Delete)";
             this.buttonDELData.UseVisualStyleBackColor = true;
@@ -443,26 +474,29 @@
             // 
             // textBoxDataID
             // 
-            this.textBoxDataID.Location = new System.Drawing.Point(393, 11);
+            this.textBoxDataID.Location = new System.Drawing.Point(524, 14);
+            this.textBoxDataID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxDataID.Name = "textBoxDataID";
-            this.textBoxDataID.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDataID.Size = new System.Drawing.Size(132, 22);
             this.textBoxDataID.TabIndex = 18;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(340, 14);
+            this.label11.Location = new System.Drawing.Point(453, 17);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(47, 13);
+            this.label11.Size = new System.Drawing.Size(55, 16);
             this.label11.TabIndex = 17;
             this.label11.Text = "Data ID:";
             this.label11.UseMnemonic = false;
             // 
             // buttonPOSTData
             // 
-            this.buttonPOSTData.Location = new System.Drawing.Point(9, 179);
+            this.buttonPOSTData.Location = new System.Drawing.Point(12, 220);
+            this.buttonPOSTData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPOSTData.Name = "buttonPOSTData";
-            this.buttonPOSTData.Size = new System.Drawing.Size(124, 22);
+            this.buttonPOSTData.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTData.TabIndex = 16;
             this.buttonPOSTData.Text = "POST (Create)";
             this.buttonPOSTData.UseVisualStyleBackColor = true;
@@ -471,52 +505,58 @@
             // richTextBoxDataContent
             // 
             this.richTextBoxDataContent.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.richTextBoxDataContent.Location = new System.Drawing.Point(9, 105);
+            this.richTextBoxDataContent.Location = new System.Drawing.Point(12, 129);
+            this.richTextBoxDataContent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.richTextBoxDataContent.Name = "richTextBoxDataContent";
-            this.richTextBoxDataContent.Size = new System.Drawing.Size(282, 68);
+            this.richTextBoxDataContent.Size = new System.Drawing.Size(375, 83);
             this.richTextBoxDataContent.TabIndex = 15;
             this.richTextBoxDataContent.Text = "";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 89);
+            this.label10.Location = new System.Drawing.Point(8, 110);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 13);
+            this.label10.Size = new System.Drawing.Size(55, 16);
             this.label10.TabIndex = 14;
             this.label10.Text = "Content:";
             this.label10.UseMnemonic = false;
             // 
             // textBoxModuleNameData
             // 
-            this.textBoxModuleNameData.Location = new System.Drawing.Point(105, 41);
+            this.textBoxModuleNameData.Location = new System.Drawing.Point(140, 50);
+            this.textBoxModuleNameData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxModuleNameData.Name = "textBoxModuleNameData";
-            this.textBoxModuleNameData.Size = new System.Drawing.Size(100, 20);
+            this.textBoxModuleNameData.Size = new System.Drawing.Size(132, 22);
             this.textBoxModuleNameData.TabIndex = 13;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 41);
+            this.label9.Location = new System.Drawing.Point(8, 50);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(76, 13);
+            this.label9.Size = new System.Drawing.Size(95, 16);
             this.label9.TabIndex = 12;
             this.label9.Text = "Module Name:";
             this.label9.UseMnemonic = false;
             // 
             // textBoxApplicationNameData
             // 
-            this.textBoxApplicationNameData.Location = new System.Drawing.Point(105, 11);
+            this.textBoxApplicationNameData.Location = new System.Drawing.Point(140, 14);
+            this.textBoxApplicationNameData.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxApplicationNameData.Name = "textBoxApplicationNameData";
-            this.textBoxApplicationNameData.Size = new System.Drawing.Size(100, 20);
+            this.textBoxApplicationNameData.Size = new System.Drawing.Size(132, 22);
             this.textBoxApplicationNameData.TabIndex = 11;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 14);
+            this.label8.Location = new System.Drawing.Point(8, 17);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 13);
+            this.label8.Size = new System.Drawing.Size(117, 16);
             this.label8.TabIndex = 10;
             this.label8.Text = "Application Name:";
             this.label8.UseMnemonic = false;
@@ -527,8 +567,6 @@
             this.tabPage4.Controls.Add(this.buttonPOSTSubscription);
             this.tabPage4.Controls.Add(this.textBoxEndPoint);
             this.tabPage4.Controls.Add(this.label17);
-            this.tabPage4.Controls.Add(this.textBoxSubscriptionNameDEL);
-            this.tabPage4.Controls.Add(this.label16);
             this.tabPage4.Controls.Add(this.comboBoxSubscriptionEvents);
             this.tabPage4.Controls.Add(this.label15);
             this.tabPage4.Controls.Add(this.textBoxSubscriptionNamePOST);
@@ -538,18 +576,20 @@
             this.tabPage4.Controls.Add(this.textBoxApplicationNameSubscription);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label12);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 25);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Size = new System.Drawing.Size(778, 387);
+            this.tabPage4.Size = new System.Drawing.Size(1040, 479);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Subscription";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // buttonPOSTSubscription
             // 
-            this.buttonPOSTSubscription.Location = new System.Drawing.Point(6, 177);
+            this.buttonPOSTSubscription.Location = new System.Drawing.Point(184, 219);
+            this.buttonPOSTSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonPOSTSubscription.Name = "buttonPOSTSubscription";
-            this.buttonPOSTSubscription.Size = new System.Drawing.Size(124, 22);
+            this.buttonPOSTSubscription.Size = new System.Drawing.Size(165, 27);
             this.buttonPOSTSubscription.TabIndex = 29;
             this.buttonPOSTSubscription.Text = "POST (Create)";
             this.buttonPOSTSubscription.UseVisualStyleBackColor = true;
@@ -557,37 +597,22 @@
             // 
             // textBoxEndPoint
             // 
-            this.textBoxEndPoint.Location = new System.Drawing.Point(123, 138);
+            this.textBoxEndPoint.Location = new System.Drawing.Point(164, 170);
+            this.textBoxEndPoint.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxEndPoint.Name = "textBoxEndPoint";
-            this.textBoxEndPoint.Size = new System.Drawing.Size(121, 20);
+            this.textBoxEndPoint.Size = new System.Drawing.Size(160, 22);
             this.textBoxEndPoint.TabIndex = 28;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(6, 141);
+            this.label17.Location = new System.Drawing.Point(8, 174);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(114, 13);
+            this.label17.Size = new System.Drawing.Size(141, 16);
             this.label17.TabIndex = 27;
             this.label17.Text = "Subscription EndPoint:";
             this.label17.UseMnemonic = false;
-            // 
-            // textBoxSubscriptionNameDEL
-            // 
-            this.textBoxSubscriptionNameDEL.Location = new System.Drawing.Point(431, 10);
-            this.textBoxSubscriptionNameDEL.Name = "textBoxSubscriptionNameDEL";
-            this.textBoxSubscriptionNameDEL.Size = new System.Drawing.Size(121, 20);
-            this.textBoxSubscriptionNameDEL.TabIndex = 26;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(326, 13);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(99, 13);
-            this.label16.TabIndex = 25;
-            this.label16.Text = "Subscription Name:";
-            this.label16.UseMnemonic = false;
             // 
             // comboBoxSubscriptionEvents
             // 
@@ -596,67 +621,75 @@
             "creation",
             "deletion",
             "creation and deletion"});
-            this.comboBoxSubscriptionEvents.Location = new System.Drawing.Point(123, 111);
+            this.comboBoxSubscriptionEvents.Location = new System.Drawing.Point(164, 137);
+            this.comboBoxSubscriptionEvents.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxSubscriptionEvents.Name = "comboBoxSubscriptionEvents";
-            this.comboBoxSubscriptionEvents.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxSubscriptionEvents.Size = new System.Drawing.Size(160, 24);
             this.comboBoxSubscriptionEvents.TabIndex = 24;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(6, 114);
+            this.label15.Location = new System.Drawing.Point(8, 140);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(99, 13);
+            this.label15.Size = new System.Drawing.Size(121, 16);
             this.label15.TabIndex = 23;
             this.label15.Text = "Subscription Event:";
             this.label15.UseMnemonic = false;
             // 
             // textBoxSubscriptionNamePOST
             // 
-            this.textBoxSubscriptionNamePOST.Location = new System.Drawing.Point(123, 81);
+            this.textBoxSubscriptionNamePOST.Location = new System.Drawing.Point(164, 100);
+            this.textBoxSubscriptionNamePOST.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxSubscriptionNamePOST.Name = "textBoxSubscriptionNamePOST";
-            this.textBoxSubscriptionNamePOST.Size = new System.Drawing.Size(121, 20);
+            this.textBoxSubscriptionNamePOST.Size = new System.Drawing.Size(160, 22);
             this.textBoxSubscriptionNamePOST.TabIndex = 22;
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(6, 84);
+            this.label14.Location = new System.Drawing.Point(8, 103);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(99, 13);
+            this.label14.Size = new System.Drawing.Size(124, 16);
             this.label14.TabIndex = 21;
             this.label14.Text = "Subscription Name:";
             this.label14.UseMnemonic = false;
             // 
             // buttonDELSubscription
             // 
-            this.buttonDELSubscription.Location = new System.Drawing.Point(558, 10);
+            this.buttonDELSubscription.Location = new System.Drawing.Point(11, 219);
+            this.buttonDELSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.buttonDELSubscription.Name = "buttonDELSubscription";
-            this.buttonDELSubscription.Size = new System.Drawing.Size(124, 22);
+            this.buttonDELSubscription.Size = new System.Drawing.Size(165, 27);
             this.buttonDELSubscription.TabIndex = 20;
             this.buttonDELSubscription.Text = "DEL (Delete)";
             this.buttonDELSubscription.UseVisualStyleBackColor = true;
             // 
             // textBoxModuleNameSubscription
             // 
-            this.textBoxModuleNameSubscription.Location = new System.Drawing.Point(123, 38);
+            this.textBoxModuleNameSubscription.Location = new System.Drawing.Point(164, 47);
+            this.textBoxModuleNameSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxModuleNameSubscription.Name = "textBoxModuleNameSubscription";
-            this.textBoxModuleNameSubscription.Size = new System.Drawing.Size(121, 20);
+            this.textBoxModuleNameSubscription.Size = new System.Drawing.Size(160, 22);
             this.textBoxModuleNameSubscription.TabIndex = 15;
             // 
             // textBoxApplicationNameSubscription
             // 
-            this.textBoxApplicationNameSubscription.Location = new System.Drawing.Point(123, 12);
+            this.textBoxApplicationNameSubscription.Location = new System.Drawing.Point(164, 15);
+            this.textBoxApplicationNameSubscription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.textBoxApplicationNameSubscription.Name = "textBoxApplicationNameSubscription";
-            this.textBoxApplicationNameSubscription.Size = new System.Drawing.Size(121, 20);
+            this.textBoxApplicationNameSubscription.Size = new System.Drawing.Size(160, 22);
             this.textBoxApplicationNameSubscription.TabIndex = 14;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(6, 41);
+            this.label13.Location = new System.Drawing.Point(8, 50);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(76, 13);
+            this.label13.Size = new System.Drawing.Size(95, 16);
             this.label13.TabIndex = 13;
             this.label13.Text = "Module Name:";
             this.label13.UseMnemonic = false;
@@ -664,19 +697,21 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(6, 13);
+            this.label12.Location = new System.Drawing.Point(8, 16);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 13);
+            this.label12.Size = new System.Drawing.Size(117, 16);
             this.label12.TabIndex = 11;
             this.label12.Text = "Application Name:";
             this.label12.UseMnemonic = false;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(792, 419);
+            this.ClientSize = new System.Drawing.Size(1056, 516);
             this.Controls.Add(this.tabControl1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Form1";
             this.Text = "Form1";
             this.tabControl1.ResumeLayout(false);
@@ -747,8 +782,6 @@
         private System.Windows.Forms.Button buttonPOSTSubscription;
         private System.Windows.Forms.TextBox textBoxEndPoint;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBoxSubscriptionNameDEL;
-        private System.Windows.Forms.Label label16;
         private System.Windows.Forms.RichTextBox richTextBoxListModules;
         private System.Windows.Forms.RichTextBox richTextBoxListApplications;
     }
