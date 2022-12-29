@@ -202,6 +202,35 @@ namespace SomiodTestApplication
 
         //--------------------- SUBSCRIPTION ---------------------
 
+        static public void createSubscription(string requestURI, RestClient client, string applicationName, string moduleName, string subscriptionName, string eventName, string endpoint)
+        {
+            try
+            {
+                // Creates the Object Application
+                SomiodWebApplication.Models.Subscription subscription = new SomiodWebApplication.Models.Subscription
+                {
+                    Name = subscriptionName,
+                    Res_type = "subscription",
+                    Event = eventName,
+                    Endpoint = endpoint
+            };
+
+
+                var request = new RestRequest("/api/somiod/" + applicationName + "/" + moduleName, Method.Post);
+
+                // Adds the message body to the response
+                request.AddJsonBody(subscription);
+
+
+                RestResponse response = client.Execute(request);
+                MessageBox.Show(response.StatusCode.ToString());
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
         //--------------------- END OF SUBSCRIPTION ---------------------
 
     }

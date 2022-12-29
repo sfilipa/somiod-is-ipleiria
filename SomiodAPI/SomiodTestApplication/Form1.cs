@@ -354,7 +354,17 @@ namespace SomiodTestApplication
             }
 
         }
-        
+
+        private void buttonLigarDesligar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonPOSTSubscription_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //--------------------- END OF DATA ---------------------
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SomiodWebApplication.Controllers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -32,22 +33,29 @@ namespace LightA
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-            mClient = new MqttClient(IPAddress.Parse(domain));
-            mClient.Connect(Guid.NewGuid().ToString());
-            if (!mClient.IsConnected)
+            try
             {
-                Console.WriteLine("Error connecting to message broker...");
-                return;
+                // Creates the Object Application
+                SomiodWebApplication.Models.Subscription subscription = new SomiodWebApplication.Models.Data
+                {
+                    Content = dataContent,
+                    Res_type = "data"
+                };
+
+
+                var request = new RestRequest("/api/somiod/" + applicationName + "/" + moduleName, Method.Post);
+
+                // Adds the message body to the response
+                request.AddJsonBody(data);
+
+
+                RestResponse response = client.Execute(request);
+                MessageBox.Show(response.StatusCode.ToString());
             }
-            //Specify events we are interest on
-            //New Msg Arrived
-            mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
-            //Subscribe to topics
-            byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE,
-                MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE}; //QoS – depends on the topics number
-            mClient.Subscribe(module, qosLevels);
-            MessageBox.Show("Connected");
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

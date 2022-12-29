@@ -86,8 +86,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.tabPage5 = new System.Windows.Forms.TabPage();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.buttonLigarDesligar = new System.Windows.Forms.Button();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -559,6 +559,7 @@
             this.buttonPOSTSubscription.TabIndex = 29;
             this.buttonPOSTSubscription.Text = "POST (Create)";
             this.buttonPOSTSubscription.UseVisualStyleBackColor = true;
+            this.buttonPOSTSubscription.Click += new System.EventHandler(this.buttonPOSTSubscription_Click);
             // 
             // textBoxEndPoint
             // 
@@ -687,14 +688,6 @@
             this.tabPage5.Text = "Test";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
-            // pictureBox
-            // 
-            this.pictureBox.Location = new System.Drawing.Point(261, 104);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(185, 180);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
-            // 
             // buttonLigarDesligar
             // 
             this.buttonLigarDesligar.Location = new System.Drawing.Point(316, 60);
@@ -703,6 +696,15 @@
             this.buttonLigarDesligar.TabIndex = 1;
             this.buttonLigarDesligar.Text = "Ligar";
             this.buttonLigarDesligar.UseVisualStyleBackColor = true;
+            this.buttonLigarDesligar.Click += new System.EventHandler(this.buttonLigarDesligar_Click);
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.Location = new System.Drawing.Point(261, 104);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(185, 180);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
             // 
             // Form1
             // 
