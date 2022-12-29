@@ -182,7 +182,7 @@ namespace SomiodWebApplication.Controllers
             }
             catch (System.Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.NotFound, ex.Message);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
             }
 
             return Request.CreateResponse(HttpStatusCode.Created, obj);

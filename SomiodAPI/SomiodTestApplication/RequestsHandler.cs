@@ -50,7 +50,15 @@ namespace SomiodTestApplication
                 RestRequest request = new RestRequest(requestURI, Method.Delete);
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
-                MessageBox.Show(response.StatusCode.ToString());
+
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Resource does not exist");
+                }
+                else
+                {
+                    MessageBox.Show("Deleted");
+                }
             }
             catch (Exception e)
             {
@@ -78,7 +86,13 @@ namespace SomiodTestApplication
                 request.AddObject(application);
 
                 RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Application already exists");
+                }
+                else {
+                    MessageBox.Show("Application created");
+                }
             }
             catch (Exception e)
             {
@@ -132,8 +146,15 @@ namespace SomiodTestApplication
                 // Adds the message body to the response
                 request.AddObject(module);
 
-                RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+                RestResponse response = client.Execute(request); 
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Module already exists");
+                }
+                else
+                {
+                    MessageBox.Show("Module created");
+                }
             }
             catch (Exception e)
             {
@@ -223,7 +244,14 @@ namespace SomiodTestApplication
 
 
                 RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Subscription already exists");
+                }
+                else
+                {
+                    MessageBox.Show("Subscription created");
+                }
             }
             catch (Exception e)
             {

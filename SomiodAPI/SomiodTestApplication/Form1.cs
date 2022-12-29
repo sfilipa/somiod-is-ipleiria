@@ -79,7 +79,7 @@ namespace SomiodTestApplication
                 return;
             }
 
-            // Makes the Put Request
+            // Makes the Post Request
             string requestURI = "/api/somiod/";
             try
             {

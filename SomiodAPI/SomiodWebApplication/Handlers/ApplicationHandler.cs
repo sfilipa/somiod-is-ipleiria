@@ -98,6 +98,12 @@ namespace SomiodWebApplication.Handlers
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+
+                if (FindObjectInDatabase(newApplicationName) != null)
+                {
+                    throw new Exception("There are already exists an application named " + newApplicationName + " in the database.");
+                }
+                
                 // Set up the command to insert the object into the database
                 string insertCommand = "INSERT INTO Applications VALUES (@name, @date)";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
