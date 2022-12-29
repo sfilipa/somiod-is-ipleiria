@@ -14,7 +14,7 @@ namespace LightA
         MqttClient mClient = null;
         String domain = "127.0.0.1";
         String application = "lighting";
-        String[] module = { "lightbulb" };
+        String module = "lightbulb";
         string res_type = "subscription";
         string event_type = "creation and deletion";
         string endpoint = "127.0.0.1";
@@ -28,6 +28,7 @@ namespace LightA
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            this.BackColor = Color.Black;
             client = new RestClient(baseURI);
             
             try
@@ -35,14 +36,14 @@ namespace LightA
                 // Creates the Object Application
                 SomiodWebApplication.Models.Subscription subscription = new SomiodWebApplication.Models.Subscription
                 {
-                    Name = module[0],
+                    Name = module,
                     Res_type = res_type,
                     Event = event_type,
                     Endpoint = endpoint
                 };
 
 
-                var request = new RestRequest("/api/somiod/" + application + "/" + module[0], Method.Post);
+                var request = new RestRequest("/api/somiod/" + application + "/" + module, Method.Post);
 
                 // Adds the message body to the response
                 request.AddJsonBody(subscription);
@@ -60,7 +61,8 @@ namespace LightA
                 }
                 mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE}; //QoS – depends on the topics number
-                mClient.Subscribe(module, qosLevels);
+               // mClient.Subscribe(module, qosLevels)
+                mClient.Subscribe(new string[] { "lightbulb" }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             }
             catch (Exception)
             {
@@ -70,9 +72,17 @@ namespace LightA
 
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            MessageBox.Show("Received = " + Encoding.UTF8.GetString(e.Message) + " on topic " +
+            String message = Encoding.UTF8.GetString(e.Message);
+            MessageBox.Show("Received = " + message + " on topic " +
             e.Topic);
-            this.BackColor = Color.Yellow;
+            if (message.Equals("ON"))
+            {
+                this.BackColor = Color.Yellow;
+            }
+            else
+            {
+                this.BackColor = Color.Black;
+            }
         }
     }
 }

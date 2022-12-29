@@ -16,7 +16,7 @@ namespace RemoteLights
 {
     public partial class Remote : Form
     {
-        MqttClient mClient = null;
+        MqttClient mcClient = null;
         String domain = "127.0.0.1";
         String application = "lighting";
         String my_module = "lightcommand";
@@ -52,6 +52,14 @@ namespace RemoteLights
 
                 RestResponse response = client.Execute(request);
                 MessageBox.Show(response.StatusCode.ToString());
+
+                mcClient.Publish(module_to_send, Encoding.UTF8.GetBytes(data.Content));
+               /* if (mcClient.IsConnected)
+                {
+                    mcClient.Unsubscribe(new string[] { "lightbulb" }); //Put this in a button to see notify!
+                    mcClient.Disconnect(); //Free process and process's resources
+                }*/
+
             }
             catch (Exception)
             {
@@ -79,6 +87,15 @@ namespace RemoteLights
 
                 RestResponse response = client.Execute(request);
                 MessageBox.Show(response.StatusCode.ToString());
+
+
+
+                mcClient.Publish(module_to_send, Encoding.UTF8.GetBytes(data.Content));
+               /* if (mcClient.IsConnected)
+                {
+                    mcClient.Unsubscribe(new string[] { "lightbulb" }); //Put this in a button to see notify!
+                    mcClient.Disconnect(); //Free process and process's resources
+                }*/
             }
             catch (Exception)
             {
@@ -89,6 +106,16 @@ namespace RemoteLights
         private void Remote_Load(object sender, EventArgs e)
         {
             client = new RestClient(baseURI);
+
+            mcClient = new MqttClient(IPAddress.Parse(domain));
+
+            mcClient.Connect(Guid.NewGuid().ToString());
+            if (!mcClient.IsConnected)
+            {
+                Console.WriteLine("Error connecting to message broker...");
+                return;
+            }
+            MessageBox.Show("Connected!");
         }
     }
 }
