@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{95ADD305-8CA5-4BAA-8B3B-DD3849A7C14B}</ProjectGuid>
+    <ProjectGuid>{0A7F1300-4850-4000-9542-9435BC1D5740}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>RemoteLights</RootNamespace>
-    <AssemblyName>RemoteLights</AssemblyName>
+    <RootNamespace>LightA</RootNamespace>
+    <AssemblyName>LightA</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
