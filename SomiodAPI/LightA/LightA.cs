@@ -15,7 +15,9 @@ namespace LightA
         string endpoint = "127.0.0.1";
         string baseURI = @"http://localhost:53204";
         RestClient client = null;
-        
+        string activeModule = "";
+
+
         public LightA()
         {
             InitializeComponent();
@@ -85,10 +87,15 @@ namespace LightA
 
             try
             {
+                if (activeModule != "" && activeModule != moduleName)
+                {
+                    mClient.Disconnect();
+                }
                 createApplication(applicationName);
                 createModule(moduleName, applicationName);
                 createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 connectToMosquitto(moduleName);
+                activeModule = moduleName;
                 MessageBox.Show("Created and Connected to Server Successfully");
             }
             catch
