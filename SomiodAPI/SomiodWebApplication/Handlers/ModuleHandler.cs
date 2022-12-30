@@ -251,8 +251,8 @@ namespace SomiodWebApplication.Handlers
                 string insertCommand = "INSERT INTO Modules VALUES (@name, @date, @parent)";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
 
-                // Remove Spaces from Name and Add "_"
-                newModuleName = newModuleName.Replace(" ", "_");
+                // Remove Spaces from Name and Add "-"
+                newModuleName = newModuleName.Replace(" ", "-");
 
                 command.Parameters.AddWithValue("@name", newModuleName);
                 command.Parameters.AddWithValue("@date", todaysDateAndTime);

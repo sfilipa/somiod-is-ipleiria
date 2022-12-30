@@ -118,7 +118,14 @@ namespace SomiodTestApplication
 
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
-                MessageBox.Show(response.StatusCode.ToString());
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Application does not exist");
+                }
+                else
+                {
+                    MessageBox.Show("Application updated");
+                }
             }
             catch (Exception e)
             {
@@ -180,7 +187,14 @@ namespace SomiodTestApplication
 
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
-                MessageBox.Show(response.StatusCode.ToString());
+                if (response.StatusCode.ToString().Equals("BadRequest"))
+                {
+                    MessageBox.Show("Module does not exist");
+                }
+                else
+                {
+                    MessageBox.Show("Module updated");
+                }
             }
             catch (Exception e)
             {
@@ -212,7 +226,7 @@ namespace SomiodTestApplication
            
 
                 RestResponse response = client.Execute(request);
-                MessageBox.Show(response.StatusCode.ToString());
+                MessageBox.Show(response.Content);
             }
             catch (Exception e)
             {
