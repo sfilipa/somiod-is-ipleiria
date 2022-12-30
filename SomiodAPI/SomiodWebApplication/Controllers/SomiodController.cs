@@ -59,7 +59,7 @@ namespace SomiodWebApplication.Controllers
         [HttpPost]
         public HttpResponseMessage PostApplication([FromBody] Application newApplication)
         {
-            if (newApplication.Res_type != "application")
+            if (newApplication == null || newApplication.Res_type != "application")
             {
                 return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
@@ -100,7 +100,7 @@ namespace SomiodWebApplication.Controllers
         [HttpPut]
         public HttpResponseMessage PutApplication(string application_name, [FromBody] Application newApplication)
         {
-            if (newApplication.Res_type != "application")
+            if (newApplication == null || newApplication.Res_type != "application")
             {
                 return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
@@ -169,7 +169,7 @@ namespace SomiodWebApplication.Controllers
         [HttpPost]
         public HttpResponseMessage PostModule(string application_name, [FromBody] Module newModule)
         {
-            if (newModule.Res_type != "module")
+            if (newModule == null || newModule.Res_type != "module")
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, "Object is not of 'module' res_type");
             }
@@ -210,7 +210,7 @@ namespace SomiodWebApplication.Controllers
         [HttpPut]
         public HttpResponseMessage PutModule(string application_name, string module_name, [FromBody] Module updatedModule)
         {
-            if (updatedModule.Res_type != "module")
+            if (updatedModule == null || updatedModule.Res_type != "module")
             {
                 return Request.CreateResponse<Application>(HttpStatusCode.BadRequest, null);
             }
