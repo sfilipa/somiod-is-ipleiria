@@ -243,18 +243,18 @@ namespace SomiodWebApplication.Controllers
             {
                 Data data = newObj.ToObject<Data>();
 
-                int rowsInserted = 0;
+                int idInserted = -1;
 
                 try
                 {
-                    rowsInserted = DataHandler.SaveToDatabaseData(data, application_name, module_name);
+                    idInserted = DataHandler.SaveToDatabaseData(data, application_name, module_name);
                 }
                 catch (System.Exception ex)
                 {
                     return Request.CreateResponse(HttpStatusCode.BadRequest, ex.Message);
                 }
 
-                return Request.CreateResponse(HttpStatusCode.Created, "Inserted " + rowsInserted + " row");
+                return Request.CreateResponse(HttpStatusCode.Created, "Inserted a row with id " + idInserted);
             }
             //--Subscription
             else if (newObj["res_type"].ToString().Equals("subscription"))

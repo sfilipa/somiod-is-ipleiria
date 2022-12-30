@@ -14,7 +14,7 @@ namespace SomiodWebApplication.Handlers
         public static int SaveToDatabaseData(Data data, string application_name, string module_name)
         {
             DateTime todaysDateAndTime = DateTime.Now;
-            int rowsInserted = 0;
+            int idInserted = -1;
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string insertCmd = "INSERT INTO Data VALUES (@content, @date, @parent)";
@@ -35,7 +35,19 @@ namespace SomiodWebApplication.Handlers
                 {
                     // Open the database connection and execute the insert command
                     connection.Open();
-                    rowsInserted = cmd.ExecuteNonQuery();
+                    int rowsInserted = cmd.ExecuteNonQuery();
+                    if(rowsInserted != 1)
+                    {
+                        throw new Exception("Error inserting object into database");
+                    }
+
+                    Data newData = FindLastObjectInsertedInDatabaseByModuleId(moduleObj.Id);
+                    if(newData == null)
+                    {
+                        throw new Exception("Can't find newly created data record in the database");
+                    }
+                    idInserted = newData.Id;
+
                 }
                 catch (SqlException ex)
                 {
@@ -45,8 +57,46 @@ namespace SomiodWebApplication.Handlers
 
                 }
             }
+            return idInserted;
+        }
 
-            return rowsInserted;
+        public static Data FindLastObjectInsertedInDatabaseByModuleId(int module_id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string searchNewlyInsertedData = "SELECT * FROM Data WHERE Parent = @parent ORDER BY Id DESC";
+                SqlCommand cmdSelect = new SqlCommand(searchNewlyInsertedData, connection);
+                cmdSelect.Parameters.AddWithValue("@parent", module_id);
+
+                try
+                {
+                    // Open the database connection and execute the search command
+                    connection.Open();
+                    SqlDataReader reader = cmdSelect.ExecuteReader();
+
+                    // Check if the object was found
+                    if (reader.Read())
+                    {
+                        // Create a new object using the data from the database
+                        Data obj = new Data();
+                        obj.Id = Convert.ToInt32(reader["Id"]);
+                        obj.Content = reader["Content"].ToString();
+                        obj.Creation_dt = Convert.ToDateTime(reader["Creation_dt"]);
+                        obj.Parent = Convert.ToInt32(reader["Parent"]);
+                        return obj;
+                    }
+                    else
+                    {
+                        // Return null if the object was not found
+                        return null;
+                    }
+                }
+                catch (SqlException ex)
+                {
+                    // Handle any errors that may have occurred
+                    throw ex;
+                }
+            }
         }
         public static void DeleteFromDatabase(string application_name, string module_name, int data_id)
         {
