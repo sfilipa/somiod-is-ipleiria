@@ -269,7 +269,7 @@ namespace SomiodWebApplication.Controllers
                 try
                 {
                     idInserted = DataHandler.SaveToDatabaseData(data, application_name, module_name);
-                    DataHandler.PublishDataToMosquitto(application_name, module_name, data);
+                    DataHandler.PublishDataToMosquitto(application_name, module_name, data, "creation");
                 }
                 catch (System.Exception ex)
                 {
@@ -310,6 +310,7 @@ namespace SomiodWebApplication.Controllers
             try
             {
                 DataHandler.DeleteFromDatabase(application_name, module_name, data_id);
+                DataHandler.PublishDataToMosquitto(application_name, module_name, new Data(),"deletion");
             }
             catch (System.Exception ex)
             {

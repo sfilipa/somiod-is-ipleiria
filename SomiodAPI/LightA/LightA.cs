@@ -20,7 +20,7 @@ namespace LightA
         string baseURI = @"http://localhost:53204";
         RestClient client = null;
         string activeModule = "";
-
+        string eventMqt = "";
 
         public LightA()
         {
@@ -41,8 +41,18 @@ namespace LightA
         
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
-            String message = Encoding.UTF8.GetString(e.Message);
-            
+            string body = Encoding.UTF8.GetString(e.Message);
+            string[] vars = body.Split(';');
+
+            string eventMosquitto = vars[0].ToLower();
+            string message = vars[1];
+
+            if (!eventMqt.Contains(eventMosquitto))
+            {
+                //ignores publish because it's not the type of event that this application subscribed to
+                return;
+            }
+
             XmlDocument doc = new XmlDocument();
             doc.LoadXml(message);
             string content = doc.SelectSingleNode("//content").InnerText;
@@ -132,13 +142,13 @@ namespace LightA
                     string topic = applicationName + "/" + moduleName ;
                     connectToMosquitto(topic);
                     activeModule = moduleName;
+                    eventMqt = subscriptionEventType;
                     MessageBox.Show("Created and Connected to Server Successfully");
                 }
                 else
                 {
                     MessageBox.Show(responseSubscription);
                 }
-                
             }
             catch
             {

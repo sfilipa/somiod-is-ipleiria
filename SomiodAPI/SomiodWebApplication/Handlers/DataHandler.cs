@@ -197,7 +197,7 @@ namespace SomiodWebApplication.Handlers
             }
         }
 
-        public static void PublishDataToMosquitto(string application_name, string module_name, Data data)
+        public static void PublishDataToMosquitto(string application_name, string module_name, Data data, string eventMqt)
         {
             String domain = "127.0.0.1";
             MqttClient mcClient = new MqttClient(IPAddress.Parse(domain));
@@ -210,7 +210,7 @@ namespace SomiodWebApplication.Handlers
             }
 
             string topic = application_name + "/" + module_name;
-            mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
+            mcClient.Publish(topic, Encoding.UTF8.GetBytes(eventMqt + ";" + data.Content));
         }
     }
 }
