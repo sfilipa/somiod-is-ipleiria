@@ -1,11 +1,14 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Drawing;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
+using SomiodWebApplication.Models;
 
 namespace LightA
 {
@@ -27,6 +30,8 @@ namespace LightA
         {
             this.Text = "LightA";
             client = new RestClient(baseURI);
+
+            textBoxApplicationName.Text = Properties.Settings.Default.application_name;
         }
 
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
@@ -91,8 +96,26 @@ namespace LightA
                 {
                     mClient.Disconnect();
                 }
-                createApplication(applicationName);
-                createModule(moduleName, applicationName);
+
+                SomiodWebApplication.Models.Application appCreated = createApplication(applicationName);
+                if (appCreated != null)
+                {
+                    applicationName = appCreated.Name;
+                }
+                else {
+                    applicationName = applicationName.Replace(" ", "-");
+                }
+
+                SomiodWebApplication.Models.Module moduleCreated =  createModule(moduleName, applicationName);
+                if (moduleCreated != null)
+                {
+                    moduleName = moduleCreated.Name;
+                }
+                else
+                {
+                    moduleName = moduleName.Replace(" ", "-");
+                }
+
                 createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 connectToMosquitto(moduleName);
                 activeModule = moduleName;
@@ -126,7 +149,7 @@ namespace LightA
             }
         }
 
-        private void createApplication(string applicationName)
+        private SomiodWebApplication.Models.Application createApplication(string applicationName)
         {
             try
             {
@@ -141,19 +164,24 @@ namespace LightA
                 var request = new RestRequest("/api/somiod", Method.Post);
                 request.AddJsonBody(application);
                 RestResponse response = client.Execute(request);
+                return JsonConvert.DeserializeObject<SomiodWebApplication.Models.Application>(response.Content);
             }
-            catch
+            catch (Exception ex)
             {
+                if (ex.Message.Contains("exists"))
+                {
+                    return null;
+                }
                 throw new Exception("Could not create application");
             }
         }
 
-        private void createModule(string moduleName, string applicationName)
+        private Module createModule(string moduleName, string applicationName)
         {
             try
             {
                 // Creates the Object Module
-                SomiodWebApplication.Models.Module module = new SomiodWebApplication.Models.Module
+                Module module = new Module
                 {
                     Name = moduleName,
                     Res_type = "module"
@@ -163,9 +191,15 @@ namespace LightA
                 var request = new RestRequest("/api/somiod/" + applicationName, Method.Post);
                 request.AddJsonBody(module);
                 RestResponse response = client.Execute(request);
+
+                return JsonConvert.DeserializeObject<Module>(response.Content);
             }
-            catch
+            catch (Exception ex)
             {
+                if (ex.Message.Contains("exists"))
+                {
+                    return null;
+                }
                 throw new Exception("Could not create module");
             }
         }
