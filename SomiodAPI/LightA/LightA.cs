@@ -43,6 +43,12 @@ namespace LightA
         {
             string body = Encoding.UTF8.GetString(e.Message);
             string[] vars = body.Split(';');
+            
+            if (vars.Length != 2)
+            {
+                MessageBox.Show("Something went wrong with Mosquitto. Please try again later");
+                return;
+            }
 
             string eventMosquitto = vars[0].ToLower();
             string message = vars[1];
