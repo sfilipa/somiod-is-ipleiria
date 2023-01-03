@@ -125,7 +125,8 @@ namespace LightB
                 string responseSubscription = createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 if (!responseSubscription.Contains("exists"))
                 {
-                    connectToMosquitto(moduleName);
+                    string topic = applicationName + "/" + moduleName;
+                    connectToMosquitto(topic);
                     activeModule = moduleName;
                     MessageBox.Show("Created and Connected to Server Successfully");
                 }
@@ -140,7 +141,7 @@ namespace LightB
             }
         }
 
-        private void connectToMosquitto(string moduleName)
+        private void connectToMosquitto(string topic)
         {
             try
             {
@@ -154,7 +155,7 @@ namespace LightB
                 mClient.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
                 byte[] qosLevels = { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE, MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE }; //QoS – depends on the topics number
                                                                                                                // mClient.Subscribe(module, qosLevels)
-                mClient.Subscribe(new string[] { moduleName }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
+                mClient.Subscribe(new string[] { topic }, new byte[] { MqttMsgBase.QOS_LEVEL_EXACTLY_ONCE });
             }
             catch (Exception)
             {

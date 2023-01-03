@@ -64,7 +64,8 @@ namespace RemoteLights
 
                 RestResponse response = client.Execute(request);
 
-                mcClient.Publish(module, Encoding.UTF8.GetBytes(data.Content));
+                string topic = application + "/" + module;
+                mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
@@ -104,7 +105,8 @@ namespace RemoteLights
 
                 RestResponse response = client.Execute(request);
 
-                mcClient.Publish(module, Encoding.UTF8.GetBytes(data.Content));
+                string topic = application + "/" + module;
+                mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
