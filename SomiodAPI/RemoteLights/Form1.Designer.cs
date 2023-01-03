@@ -39,10 +39,10 @@
             // 
             // buttonON
             // 
-            this.buttonON.Location = new System.Drawing.Point(11, 113);
-            this.buttonON.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonON.Location = new System.Drawing.Point(15, 139);
+            this.buttonON.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonON.Name = "buttonON";
-            this.buttonON.Size = new System.Drawing.Size(205, 76);
+            this.buttonON.Size = new System.Drawing.Size(273, 94);
             this.buttonON.TabIndex = 0;
             this.buttonON.Text = "ON";
             this.buttonON.UseVisualStyleBackColor = true;
@@ -50,10 +50,10 @@
             // 
             // buttonOFF
             // 
-            this.buttonOFF.Location = new System.Drawing.Point(11, 193);
-            this.buttonOFF.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonOFF.Location = new System.Drawing.Point(15, 238);
+            this.buttonOFF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonOFF.Name = "buttonOFF";
-            this.buttonOFF.Size = new System.Drawing.Size(205, 78);
+            this.buttonOFF.Size = new System.Drawing.Size(273, 96);
             this.buttonOFF.TabIndex = 1;
             this.buttonOFF.Text = "OFF";
             this.buttonOFF.UseVisualStyleBackColor = true;
@@ -61,9 +61,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(147, 74);
+            this.button1.Location = new System.Drawing.Point(198, 13);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(60, 23);
+            this.button1.Size = new System.Drawing.Size(80, 28);
             this.button1.TabIndex = 2;
             this.button1.Text = "Refresh";
             this.button1.UseVisualStyleBackColor = true;
@@ -72,42 +73,46 @@
             // comboBoxApplications
             // 
             this.comboBoxApplications.FormattingEnabled = true;
-            this.comboBoxApplications.Location = new System.Drawing.Point(77, 12);
+            this.comboBoxApplications.Location = new System.Drawing.Point(106, 49);
+            this.comboBoxApplications.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxApplications.Name = "comboBoxApplications";
-            this.comboBoxApplications.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxApplications.Size = new System.Drawing.Size(172, 24);
             this.comboBoxApplications.TabIndex = 3;
             // 
             // comboBoxModules
             // 
             this.comboBoxModules.FormattingEnabled = true;
-            this.comboBoxModules.Location = new System.Drawing.Point(77, 47);
+            this.comboBoxModules.Location = new System.Drawing.Point(106, 92);
+            this.comboBoxModules.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.comboBoxModules.Name = "comboBoxModules";
-            this.comboBoxModules.Size = new System.Drawing.Size(130, 21);
+            this.comboBoxModules.Size = new System.Drawing.Size(172, 24);
             this.comboBoxModules.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 15);
+            this.label1.Location = new System.Drawing.Point(19, 52);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.Size = new System.Drawing.Size(74, 16);
             this.label1.TabIndex = 5;
             this.label1.Text = "Application";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 50);
+            this.label2.Location = new System.Drawing.Point(42, 96);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.Size = new System.Drawing.Size(52, 16);
             this.label2.TabIndex = 6;
             this.label2.Text = "Module";
             // 
             // Remote
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(227, 282);
+            this.ClientSize = new System.Drawing.Size(303, 347);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBoxModules);
@@ -115,9 +120,9 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonOFF);
             this.Controls.Add(this.buttonON);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Remote";
-            this.Text = "Form1";
+            this.Text = "Remote";
             this.Load += new System.EventHandler(this.Remote_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -1,4 +1,6 @@
-﻿using RestSharp;
+﻿using Newtonsoft.Json;
+using RestSharp;
+using SomiodWebApplication.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
@@ -93,16 +96,34 @@ namespace LightB
                 {
                     mClient.Disconnect();
                 }
-                createApplication(applicationName);
-                createModule(moduleName, applicationName);
+                SomiodWebApplication.Models.Application appCreated = createApplication(applicationName);
+                if (appCreated != null)
+                {
+                    applicationName = appCreated.Name;
+                }
+                else
+                {
+                    applicationName = applicationName.Replace(" ", "-");
+                }
+
+                Module moduleCreated = createModule(moduleName, applicationName);
+                if (moduleCreated != null)
+                {
+                    moduleName = moduleCreated.Name;
+                }
+                else
+                {
+                    moduleName = moduleName.Replace(" ", "-");
+                }
+                
                 createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 connectToMosquitto(moduleName);
                 activeModule = moduleName;
                 MessageBox.Show("Created and Connected to Server Successfully");
             }
-            catch
+            catch(Exception ex)
             {
-                throw new Exception("Could not connect to the server");
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -128,7 +149,7 @@ namespace LightB
             }
         }
 
-        private void createApplication(string applicationName)
+        private SomiodWebApplication.Models.Application createApplication(string applicationName)
         {
             try
             {
@@ -143,19 +164,23 @@ namespace LightB
                 var request = new RestRequest("/api/somiod", Method.Post);
                 request.AddJsonBody(application);
                 RestResponse response = client.Execute(request);
+                return JsonConvert.DeserializeObject<SomiodWebApplication.Models.Application>(response.Content);
             }
-            catch
+            catch(Exception ex)
             {
+                if (ex.Message.Contains("exists")) {
+                    return null;
+                }
                 throw new Exception("Could not create application");
             }
         }
 
-        private void createModule(string moduleName, string applicationName)
+        private Module createModule(string moduleName, string applicationName)
         {
             try
             {
                 // Creates the Object Module
-                SomiodWebApplication.Models.Module module = new SomiodWebApplication.Models.Module
+                Module module = new Module
                 {
                     Name = moduleName,
                     Res_type = "module"
@@ -165,9 +190,15 @@ namespace LightB
                 var request = new RestRequest("/api/somiod/" + applicationName, Method.Post);
                 request.AddJsonBody(module);
                 RestResponse response = client.Execute(request);
+
+                    return JsonConvert.DeserializeObject<Module>(response.Content);
             }
-            catch
+            catch (Exception ex)
             {
+                if (ex.Message.Contains("exists"))
+                {
+                    return null;
+                }
                 throw new Exception("Could not create module");
             }
         }
@@ -177,7 +208,7 @@ namespace LightB
             try
             {
                 // Creates the Object Subscription
-                SomiodWebApplication.Models.Subscription subscription = new SomiodWebApplication.Models.Subscription
+                Subscription subscription = new Subscription
                 {
                     Name = subscriptionName,
                     Res_type = "subscription",
