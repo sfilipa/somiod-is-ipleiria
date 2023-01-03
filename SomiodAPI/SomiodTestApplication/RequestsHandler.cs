@@ -31,7 +31,13 @@ namespace SomiodTestApplication
                 doc.LoadXml(response.Content);
 
                 // Shows Status Code
+                if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    MessageBox.Show("Resource does not exist");
+                    return null;
+                }
                 MessageBox.Show(response.StatusCode.ToString());
+                
 
                 return doc;
             }
@@ -51,7 +57,7 @@ namespace SomiodTestApplication
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
 
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Resource does not exist");
                 }
@@ -86,7 +92,7 @@ namespace SomiodTestApplication
                 request.AddObject(application);
 
                 RestResponse response = client.Execute(request);
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Application already exists");
                 }
@@ -118,7 +124,7 @@ namespace SomiodTestApplication
 
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Application does not exist");
                 }
@@ -154,7 +160,7 @@ namespace SomiodTestApplication
                 request.AddObject(module);
 
                 RestResponse response = client.Execute(request); 
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Module already exists");
                 }
@@ -187,7 +193,7 @@ namespace SomiodTestApplication
 
                 RestResponse response = client.Execute(request);
                 // Shows Status Code
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                 {
                     MessageBox.Show("Module does not exist");
                 }
@@ -258,13 +264,13 @@ namespace SomiodTestApplication
 
 
                 RestResponse response = client.Execute(request);
-                if (response.StatusCode.ToString().Equals("BadRequest"))
+                if (response.StatusCode == System.Net.HttpStatusCode.Created)
                 {
-                    MessageBox.Show("Subscription already exists");
+                    MessageBox.Show("Subscription Created");
                 }
                 else
                 {
-                    MessageBox.Show("Subscription created");
+                    MessageBox.Show(response.Content.ToString());
                 }
             }
             catch (Exception e)

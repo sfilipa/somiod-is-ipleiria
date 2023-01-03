@@ -14,7 +14,7 @@ namespace SomiodWebApplication.Handlers
             Application applicationObj = ApplicationHandler.FindObjectInDatabase(application_name);
             if (applicationObj == null)
             {
-                throw new Exception("ERROR: FINDING APPLICATION WITH NAME " + application_name);
+                throw new Exception("There is no application named " + application_name);
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -94,7 +94,7 @@ namespace SomiodWebApplication.Handlers
                 if (applicationObj == null)
                 {
                     Console.WriteLine("ERROR: FINDING APPLICATION WITH NAME " + application_name);
-                    throw new Exception("ERROR: FINDING APPLICATION WITH NAME " + application_name);
+                    throw new Exception("There is no application named  " + application_name);
                 }
 
                 string searchCommand = "SELECT * FROM Modules WHERE Parent = @Parent";
@@ -297,7 +297,7 @@ namespace SomiodWebApplication.Handlers
             Application applicationObj = ApplicationHandler.FindObjectInDatabase(application_name);
             if (applicationObj == null)
             {
-                throw new Exception("ERROR: FINDING APPLICATION WITH NAME " + application_name);
+                throw new Exception("There is no application named  " + application_name);
             }
 
             string newModuleName = updatedModule.Name;

@@ -48,6 +48,10 @@ namespace SomiodWebApplication.Handlers
                     }
                     idInserted = newData.Id;
 
+
+
+
+                    
                 }
                 catch (SqlException ex)
                 {

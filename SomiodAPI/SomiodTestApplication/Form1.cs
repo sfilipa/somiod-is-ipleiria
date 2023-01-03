@@ -29,6 +29,11 @@ namespace SomiodTestApplication
             string requestURI = "/api/somiod/";
             XmlDocument doc = RequestsHandler.getResponseAsXMLDocument(requestURI, client, "Applications");
 
+            if (doc == null)
+            {
+                return;
+            }
+
             // Loads the XML document to the RichTextBox
             richTextBoxListApplications.Text = doc.InnerXml;
         }
@@ -45,6 +50,10 @@ namespace SomiodTestApplication
 
             string requestURI = "/api/somiod/" + applicationName;
             XmlDocument doc = RequestsHandler.getResponseAsXMLDocument(requestURI, client, "Application");
+            if(doc == null)
+            {
+                return;
+            }
             // Loads the XML document to the RichTextBox
             richTextBoxApplication.Text = doc.InnerXml;
         }
@@ -148,6 +157,7 @@ namespace SomiodTestApplication
 
         private void button1_Click_1(object sender, EventArgs e) //get all modules from application
         {
+            richTextBoxListModules.Clear();
             string applicationName = textBoxApplicationNameModule.Text;
             if (applicationName.Trim().Length == 0)
             {
@@ -156,11 +166,18 @@ namespace SomiodTestApplication
             }
             string requestURI = "/api/somiod/" + applicationName + "/modules";
             XmlDocument doc = RequestsHandler.getResponseAsXMLDocument(requestURI, client, "Modules");
+            
+            if(doc == null)
+            {
+                return;
+            }
+            
             richTextBoxListModules.Text = doc.InnerXml;
         }
 
         private void buttonGetModule_Click(object sender, EventArgs e)
         {
+            richTextBoxSpecificModule.Clear();
             string applicationName = textBoxApplicationNameModule.Text;
             if (applicationName.Trim().Length == 0)
             {
@@ -175,6 +192,12 @@ namespace SomiodTestApplication
             }
             string requestURI = "/api/somiod/" + applicationName + "/" + moduleName;
             XmlDocument doc = RequestsHandler.getResponseAsXMLDocument(requestURI, client, "Module");
+
+            if (doc == null)
+            {
+                return;
+            }
+
             richTextBoxSpecificModule.Text = doc.InnerXml;
         }
 
@@ -296,7 +319,7 @@ namespace SomiodTestApplication
             string moduleName = textBoxModuleNameData.Text;
             if (moduleName.Trim().Length == 0)
             {
-                MessageBox.Show("Please enter the new module name");
+                MessageBox.Show("Please enter the module name");
                 return;
             }
 

@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http.Formatting;
 using Application = SomiodWebApplication.Models.Application;
 using Newtonsoft.Json.Linq;
+using System.Linq;
 
 namespace SomiodWebApplication.Controllers
 {
@@ -49,6 +50,11 @@ namespace SomiodWebApplication.Controllers
             catch (System.Exception)
             {
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Application(), formatter);
+            }
+
+            if (obj == null) 
+            { 
+                return Request.CreateResponse(HttpStatusCode.NotFound, new Application(), formatter);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, obj, formatter);
@@ -135,7 +141,16 @@ namespace SomiodWebApplication.Controllers
             }
             catch (System.Exception ex)
             {
+                if (ex.Message == "There is no application named  " + application_name)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, new Module(), formatter);
+                }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
+            }
+
+            if (modules == null || !modules.Any())
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, new Module(), formatter);
             }
 
             return Request.CreateResponse(HttpStatusCode.OK, modules, formatter);
@@ -158,6 +173,11 @@ namespace SomiodWebApplication.Controllers
             }
             catch (System.Exception ex)
             {
+
+                if (ex.Message == "There is no application named " + application_name)
+                {
+                    return Request.CreateResponse(HttpStatusCode.NotFound, new Module(), formatter);
+                }
                 return Request.CreateResponse(HttpStatusCode.BadRequest, new Module(), formatter);
             }
 

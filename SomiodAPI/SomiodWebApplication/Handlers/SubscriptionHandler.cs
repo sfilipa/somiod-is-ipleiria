@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Http.Results;
 using static System.Net.Mime.MediaTypeNames;
 
 public class SubscriptionHandler
@@ -117,6 +118,10 @@ public class SubscriptionHandler
                 return null;
             }
 
+            if(module == null)
+            {
+                return null;
+            }
 
             // Set up the command to search for the object by name
             string searchCommand = "SELECT * FROM Subscriptions WHERE Name = @Name and Parent = @Parent";
