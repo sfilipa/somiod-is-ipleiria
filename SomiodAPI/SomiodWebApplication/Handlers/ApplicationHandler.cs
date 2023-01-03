@@ -98,6 +98,8 @@ namespace SomiodWebApplication.Handlers
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
+                // Remove Spaces from Name and Add "_"
+                newApplicationName = newApplicationName.Replace(" ", "-");
 
                 if (FindObjectInDatabase(newApplicationName) != null)
                 {
@@ -107,9 +109,6 @@ namespace SomiodWebApplication.Handlers
                 // Set up the command to insert the object into the database
                 string insertCommand = "INSERT INTO Applications VALUES (@name, @date)";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
-
-                // Remove Spaces from Name and Add "_"
-                newApplicationName = newApplicationName.Replace(" ", "-");
 
                 // Add the parameters for the object's name and value
                 command.Parameters.AddWithValue("@name", newApplicationName);

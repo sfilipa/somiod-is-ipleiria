@@ -31,5 +31,41 @@ namespace LightA.Properties {
                 return ((string)(this["application_name"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("light bulb")]
+        public string module_name {
+            get {
+                return ((string)(this["module_name"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("sub 1")]
+        public string subscription_name {
+            get {
+                return ((string)(this["subscription_name"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("creation and deletion")]
+        public string subscription_event {
+            get {
+                return ((string)(this["subscription_event"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
+        public string subscription_endpoint {
+            get {
+                return ((string)(this["subscription_endpoint"]));
+            }
+        }
     }
 }

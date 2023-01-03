@@ -32,6 +32,10 @@ namespace LightA
             client = new RestClient(baseURI);
 
             textBoxApplicationName.Text = Properties.Settings.Default.application_name;
+            textBoxModuleName.Text = Properties.Settings.Default.module_name;
+            textBoxSubscriptionName.Text = Properties.Settings.Default.subscription_name;
+            textBoxSubscriptionEndPoint.Text = Properties.Settings.Default.subscription_endpoint;
+            comboBoxEventType.Text = Properties.Settings.Default.subscription_event;
         }
 
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
@@ -116,10 +120,18 @@ namespace LightA
                     moduleName = moduleName.Replace(" ", "-");
                 }
 
-                createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
-                connectToMosquitto(moduleName);
-                activeModule = moduleName;
-                MessageBox.Show("Created and Connected to Server Successfully");
+                string responseSubscription = createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
+                if (!responseSubscription.Contains("exists"))
+                {
+                    connectToMosquitto(moduleName);
+                    activeModule = moduleName;
+                    MessageBox.Show("Created and Connected to Server Successfully");
+                }
+                else
+                {
+                    MessageBox.Show(responseSubscription);
+                }
+                
             }
             catch
             {
@@ -204,7 +216,7 @@ namespace LightA
             }
         }
 
-        private void createSubscription(string subscriptionEventType, string subscrptionEndPoint, string subscriptionName, string moduleName, string applicationName)
+        private string createSubscription(string subscriptionEventType, string subscrptionEndPoint, string subscriptionName, string moduleName, string applicationName)
         {
             try
             {
@@ -221,6 +233,7 @@ namespace LightA
                 var request = new RestRequest("/api/somiod/" + applicationName + "/" + moduleName, Method.Post);
                 request.AddJsonBody(subscription);
                 RestResponse response = client.Execute(request);
+                return response.Content;
             }
             catch
             {
