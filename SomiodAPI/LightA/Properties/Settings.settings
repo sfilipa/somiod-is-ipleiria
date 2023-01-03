@@ -5,5 +5,17 @@
     <Setting Name="application_name" Type="System.String" Scope="Application">
       <Value Profile="(Default)">lighting</Value>
     </Setting>
+    <Setting Name="module_name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">light bulb</Value>
+    </Setting>
+    <Setting Name="subscription_name" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">sub 1</Value>
+    </Setting>
+    <Setting Name="subscription_event" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">creation and deletion</Value>
+    </Setting>
+    <Setting Name="subscription_endpoint" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">127.0.0.1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

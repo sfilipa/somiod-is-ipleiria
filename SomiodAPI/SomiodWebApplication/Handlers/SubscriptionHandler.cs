@@ -27,6 +27,10 @@ public class SubscriptionHandler
 
         using (SqlConnection connection = new SqlConnection(connectionString))
         {
+
+            // Remove Spaces from Name and Add "-"
+            newSubscriptionName = newSubscriptionName.Replace(" ", "-");
+
             if (FindObjectInDatabase(application_name, module_name, newSubscriptionName) != null)
             {
                  throw new Exception("There are already exists a subscription named " + newSubscriptionName + " in the module "+module_name+" from application " + application_name);
@@ -42,8 +46,6 @@ public class SubscriptionHandler
                 throw new Exception("Module '" + module_name + "' from Application '" + application_name + "' does not exist");
             }
 
-            // Remove Spaces from Name and Add "-"
-            newSubscriptionName = newSubscriptionName.Replace(" ", "-");
 
             // Add the parameters for the object's name and value
             command.Parameters.AddWithValue("@name", newSubscriptionName);

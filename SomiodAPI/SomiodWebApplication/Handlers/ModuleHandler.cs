@@ -241,6 +241,9 @@ namespace SomiodWebApplication.Handlers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
 
+                // Remove Spaces from Name and Add "-"
+                newModuleName = newModuleName.Replace(" ", "-");
+
                 if (FindObjectInDatabase(application_name, newModuleName) != null)
                 {
                     throw new Exception("There are already exists a module named " + newModuleName + " in the application " + application_name);
@@ -250,9 +253,6 @@ namespace SomiodWebApplication.Handlers
                 // Set up the command to insert the object into the database
                 string insertCommand = "INSERT INTO Modules VALUES (@name, @date, @parent)";
                 SqlCommand command = new SqlCommand(insertCommand, connection);
-
-                // Remove Spaces from Name and Add "-"
-                newModuleName = newModuleName.Replace(" ", "-");
 
                 command.Parameters.AddWithValue("@name", newModuleName);
                 command.Parameters.AddWithValue("@date", todaysDateAndTime);
