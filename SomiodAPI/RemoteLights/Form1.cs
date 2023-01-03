@@ -20,11 +20,8 @@ namespace RemoteLights
 {
     public partial class Remote : Form
     {
-        MqttClient mcClient = null;
-        String domain = "127.0.0.1";
         string baseURI = @"http://localhost:53204";
         RestClient client = null;
-
         
         public Remote()
         {
@@ -63,9 +60,6 @@ namespace RemoteLights
                 request.AddJsonBody(data);
 
                 RestResponse response = client.Execute(request);
-
-                string topic = application + "/" + module;
-                mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
@@ -104,9 +98,6 @@ namespace RemoteLights
                 request.AddJsonBody(data);
 
                 RestResponse response = client.Execute(request);
-
-                string topic = application + "/" + module;
-                mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
             }
             catch (Exception)
             {
@@ -119,15 +110,6 @@ namespace RemoteLights
             client = new RestClient(baseURI);
 
             loadApplicationsIntoComboBox();
-
-            mcClient = new MqttClient(IPAddress.Parse(domain));
-
-            mcClient.Connect(Guid.NewGuid().ToString());
-            if (!mcClient.IsConnected)
-            {
-                Console.WriteLine("Error connecting to message broker...");
-                return;
-            }
         }
 
         private void loadApplicationsIntoComboBox()

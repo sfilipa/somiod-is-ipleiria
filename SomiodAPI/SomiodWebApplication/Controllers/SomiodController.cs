@@ -268,6 +268,7 @@ namespace SomiodWebApplication.Controllers
                 try
                 {
                     idInserted = DataHandler.SaveToDatabaseData(data, application_name, module_name);
+                    DataHandler.PublishDataToMosquitto(application_name, module_name, data);
                 }
                 catch (System.Exception ex)
                 {

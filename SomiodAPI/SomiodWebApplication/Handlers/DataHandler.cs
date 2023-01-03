@@ -3,7 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Text;
 using System.Web;
+using uPLibrary.Networking.M2Mqtt;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace SomiodWebApplication.Handlers
 {
@@ -185,6 +189,22 @@ namespace SomiodWebApplication.Handlers
                     throw ex;
                 }
             }
+        }
+
+        public static void PublishDataToMosquitto(string application_name, string module_name, Data data)
+        {
+            String domain = "127.0.0.1";
+            MqttClient mcClient = new MqttClient(IPAddress.Parse(domain));
+
+            mcClient.Connect(Guid.NewGuid().ToString());
+            if (!mcClient.IsConnected)
+            {
+                Console.WriteLine("Error connecting to message broker...");
+                return;
+            }
+
+            string topic = application_name + "/" + module_name;
+            mcClient.Publish(topic, Encoding.UTF8.GetBytes(data.Content));
         }
     }
 }
