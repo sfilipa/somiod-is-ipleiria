@@ -96,6 +96,7 @@
             this.comboBoxEventType.Name = "comboBoxEventType";
             this.comboBoxEventType.Size = new System.Drawing.Size(132, 21);
             this.comboBoxEventType.TabIndex = 6;
+            this.comboBoxEventType.SelectedIndexChanged += new System.EventHandler(this.comboBoxEventType_SelectedIndexChanged);
             // 
             // textBoxSubscriptionEndPoint
             // 

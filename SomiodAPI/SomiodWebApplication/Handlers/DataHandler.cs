@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
+using System.Xml;
 using uPLibrary.Networking.M2Mqtt;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -19,11 +21,15 @@ namespace SomiodWebApplication.Handlers
         {
             DateTime todaysDateAndTime = DateTime.Now;
             int idInserted = -1;
+            
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(data.Content);
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string insertCmd = "INSERT INTO Data VALUES (@content, @date, @parent)";
                 SqlCommand cmd = new SqlCommand(insertCmd, connection);
-                cmd.Parameters.AddWithValue("@content", data.Content);
+                cmd.Parameters.AddWithValue("@content", doc.SelectSingleNode("//content").InnerText);
                 cmd.Parameters.AddWithValue("@date", todaysDateAndTime);
 
                 Module moduleObj = ModuleHandler.FindObjectInDatabase(application_name, module_name);
@@ -141,7 +147,7 @@ namespace SomiodWebApplication.Handlers
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 // Find Application
-                Application application = ApplicationHandler.FindObjectInDatabase(application_name);
+                Models.Application application = ApplicationHandler.FindObjectInDatabase(application_name);
                 if (application == null)
                 {
                     return null;

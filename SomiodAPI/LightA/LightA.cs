@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 using SomiodWebApplication.Models;
+using System.Xml;
 
 namespace LightA
 {
@@ -37,18 +38,23 @@ namespace LightA
             textBoxSubscriptionEndPoint.Text = Properties.Settings.Default.subscription_endpoint;
             comboBoxEventType.Text = Properties.Settings.Default.subscription_event;
         }
-
+        
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             String message = Encoding.UTF8.GetString(e.Message);
-            if (message.Equals("ON"))
+            
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(message);
+            string content = doc.SelectSingleNode("//content").InnerText;
+            
+            if(content.Equals("ON"))
             {
                 if (richTextBoxLightBulb.InvokeRequired)
                 {
                     richTextBoxLightBulb.Invoke(new Action(() => richTextBoxLightBulb.BackColor = Color.Yellow));
                 }
             }
-            else
+            else if(content.Equals("OFF"))
             {
                 if (richTextBoxLightBulb.InvokeRequired)
                 {
@@ -123,7 +129,7 @@ namespace LightA
                 string responseSubscription = createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 if (!responseSubscription.Contains("exists"))
                 {
-                    string topic = applicationName + "/" + moduleName;
+                    string topic = applicationName + "/" + moduleName ;
                     connectToMosquitto(topic);
                     activeModule = moduleName;
                     MessageBox.Show("Created and Connected to Server Successfully");
@@ -253,6 +259,11 @@ namespace LightA
         }
 
         private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBoxEventType_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

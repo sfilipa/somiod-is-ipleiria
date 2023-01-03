@@ -35,7 +35,7 @@ namespace RemoteLights
                 // Creates the Object Application
                 SomiodWebApplication.Models.Data data = new SomiodWebApplication.Models.Data
                 {
-                    Content = "OFF",
+                    Content = "<root><content>OFF</content></root>",
                     Res_type = "data"
                 };
 
@@ -74,7 +74,7 @@ namespace RemoteLights
                 // Creates the Object Application
                 SomiodWebApplication.Models.Data data = new SomiodWebApplication.Models.Data
                 {
-                    Content = "ON",
+                    Content = "<root><content>ON</content></root>",
                     Res_type = "data"
                 };
 

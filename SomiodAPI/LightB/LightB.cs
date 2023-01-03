@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
 
@@ -43,14 +44,19 @@ namespace LightB
         void client_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
             String message = Encoding.UTF8.GetString(e.Message);
-            if (message.Equals("ON"))
+            
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(message);
+            string content = doc.SelectSingleNode("//content").InnerText;
+            
+            if(content.Equals("ON"))
             {
                 if (richTextBoxLightBulb.InvokeRequired)
                 {
                     richTextBoxLightBulb.Invoke(new Action(() => richTextBoxLightBulb.BackColor = Color.Salmon));
                 }
             }
-            else
+            else if(content.Equals("OFF"))
             {
                 if (richTextBoxLightBulb.InvokeRequired)
                 {
@@ -125,7 +131,11 @@ namespace LightB
                 string responseSubscription = createSubscription(subscriptionEventType, subscrptionEndPoint, subscriptionName, moduleName, applicationName);
                 if (!responseSubscription.Contains("exists"))
                 {
-                    string topic = applicationName + "/" + moduleName;
+                    if (subscriptionEventType.Equals("creation and deletion"))
+                    {
+                        subscriptionEventType = "creationAndDeletion";
+                    }
+                    string topic = applicationName + "/" + moduleName + "/" + subscriptionEventType;
                     connectToMosquitto(topic);
                     activeModule = moduleName;
                     MessageBox.Show("Created and Connected to Server Successfully");

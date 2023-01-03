@@ -8,6 +8,7 @@ using System.Net.Http.Formatting;
 using Application = SomiodWebApplication.Models.Application;
 using Newtonsoft.Json.Linq;
 using System.Linq;
+using System.Xml;
 
 namespace SomiodWebApplication.Controllers
 {
